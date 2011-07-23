@@ -7,5 +7,5 @@ match '/signup', :to => 'users#new'
 match '/about', :to => 'pages#about'
 match '/contact', :to => 'pages#contact'
 
-root :to => 'pages#home'
+root :to => 'home#index'
 end
