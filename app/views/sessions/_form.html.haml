@@ -1,12 +1,9 @@
 -form_for(:session, :url => sessions_path) do |f|
-	%p.field
-		=f.label :email
-		=f.text_field :email
-	
-	%p.field
-		=f.label :password
-		=f.password_field :password
-	
-	%p.action
-		=f.submit "Sign in"
+  =f.error_messages
+  %dl
+    %dt=f.label :email
+    %dd=f.text_field :email
+    %dt=f.label :password
+    %dd=f.password_field :password
+  =f.submit "Sign in"
 
