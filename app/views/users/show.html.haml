@@ -2,5 +2,12 @@
 %p email: #{@user.email}
 %p school: #{@user.school}
 
--if current_user = @user
+-if current_user == @user
 	=link_to "Edit", edit_user_path(@user)
+
+
+%ul
+	/%li= link_to "your items", #
+	%li= link_to "account details", edit_user_path(@user)
+	/%li= link_to "add items", #
+	/%li= link_to "create group", #

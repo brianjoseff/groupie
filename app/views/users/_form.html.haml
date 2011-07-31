@@ -11,7 +11,7 @@
 		%dd=f.password_field :password
 		%dt=f.label :password_confirmation
 		%dd=f.password_field :password_confirmation	
-	-if @user.id == nil
+	-if !signed_in?
 		=f.submit "Sign up"
 	-else
 		=f.submit "Edit details"
