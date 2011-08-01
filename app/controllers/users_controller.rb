@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => :create
-  before_filter :belongs_to_current_user, :only => [ :edit, :update ]
   
   def show
     @user = User.find(params[:id])
@@ -12,6 +11,9 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    unless current_user == @user
+      deny_access(flash_message= "sorry, you can only edit your own stuff")
+    end
   end
   
   def update

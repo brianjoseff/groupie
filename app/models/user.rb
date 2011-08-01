@@ -12,5 +12,7 @@ class User < ActiveRecord::Base
                        :length       => { :within => 6..40 }
                        
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  
+  has_many :memberships, :dependent => :destroy
+  has_many :groups, :through => :memberships
+  has_many :groups_as_owner, :class_name => "Group"
 end
