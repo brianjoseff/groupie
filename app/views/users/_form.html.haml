@@ -1,19 +1,20 @@
+%h1 Sign up
 -form_for(:user, :url => users_path, :html => {:multipart => true}) do |f|
 	%dl
 		-if signed_in?
-			%dt=f.label :avatar
-			%dd=f.file_field :avatar
-		%dt=f.label :name
-		%dd=f.text_field :name
-		%dt=f.label :email
-		%dd=f.text_field :email
-		%dt=f.label :password
-		%dd=f.password_field :password
-		%dt=f.label :password_confirmation
-		%dd=f.password_field :password_confirmation	
+			%dt.field=f.label :avatar
+			%dd.field=f.file_field :avatar
+		%dt.field=f.label :name
+		%dd.field=f.text_field :name
+		%dt.field=f.label :email
+		%dd.field=f.text_field :email
+		%dt.field=f.label :password
+		%dd.field=f.password_field :password
+		%dt.field=f.label :password_confirmation
+		%dd.field=f.password_field :password_confirmation	
 	-if !signed_in?
-		=f.submit "Sign up"
+		.action=f.submit "Sign up"
 	-else
-		=f.submit "Edit details"
-		
+		.action=f.submit "Edit details"
+
 

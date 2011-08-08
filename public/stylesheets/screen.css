@@ -1,16 +1,77 @@
 /* Copyright (c) 2006, Yahoo! Inc. All rights reserved. Code licensed under the BSD License: http://developer.yahoo.net/yui/license.txt version: 0.12.0 */ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}ol,ul {list-style:none;}caption,th {text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym {border:0;}
+h1{
+	font-weight: bold;
+	font-size:200%;
+	margin-bottom:1em;
+}
+.container{
+	width:900px;
+	margin:auto;
+	padding: 10px;
+}
 body{
-	
+	background: #a6a6a6;
+	width:100%;
+}
+header{
+	width:900px;
+	margin:auto;
+	background: #f92034;
+}
+section{
+	clear:both;
+	padding: 50px;
+	margin: auto;
+	background: #fff;
+	min-height: 500px;
+}
+footer{
+	margin:5px;
 }
 
-ul#nav {
-  width:100%;	
+nav{
+}
+nav ul{
+	float:right;
+	background: #fff;
+	margin-bottom:10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+nav li {
+  display: inline-block;
+  margin:3px;
+  padding:2	px;
 }
 
-ul#nav li {
-  float:left;
-  width:20%;
-  margin:10px;
-  padding:15px;
-  border:1px solid gainsboro;
+nav a {
+	text-decoration:none;
+	font-weight:bold;
+	display:block;
+}
+
+dd,dt, div.action{
+  margin-bottom: 10px;	
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+.col1{
+	float:left;
+	width:300px;
+	margin-bottom:10px;
+	background: #fff;
+	padding:40px;
+}
+.col2{
+	float:right;
+	width:300px;
+	background: #fff;
+	padding:40px;
+}
+
+span.clear{
+	clear:both;
 }

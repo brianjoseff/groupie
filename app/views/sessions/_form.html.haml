@@ -1,9 +1,9 @@
+%h1 Sign in
 -form_for(:session, :url => sessions_path) do |f|
-  =f.error_messages
   %dl
-    %dt=f.label :email
-    %dd=f.text_field :email
-    %dt=f.label :password
-    %dd=f.password_field :password
-  =f.submit "Sign in"
+    %dt.field=f.label :email
+    %dd.field=f.text_field :email
+    %dt.field=f.label :password
+    %dd.field=f.password_field :password
+  .action=f.submit "Sign in"
 

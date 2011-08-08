@@ -1,0 +1,13 @@
+-form_for(:posts, :html => { :multipart => true}) do |f|
+	%dl
+		%dt.field=f.label :image
+		%dd.field=f.file_field :image
+		%dt.field=f.label :name
+		%dd.field=f.text_field :name
+		%dt.field=f.label :borrow, "borrow?"
+		%dd.field=f.check_box :borrow
+		%dt.field=f.label :price
+		%dd.field=f.text_field :price		
+		%dt.field=f.label :description
+		%dd.field=f.text_area :description
+		.action=f.submit "add post"
