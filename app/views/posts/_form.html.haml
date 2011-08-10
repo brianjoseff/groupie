@@ -1,4 +1,5 @@
--form_for(:posts, :html => { :multipart => true}) do |f|
+-form_for([@user,@post], :url => posts_path, :html => { :multipart => true}) do |f|
+	=hidden_field_tag 'user_id', @user.id
 	%dl
 		%dt.field=f.label :image
 		%dd.field=f.file_field :image
@@ -10,4 +11,7 @@
 		%dd.field=f.text_field :price		
 		%dt.field=f.label :description
 		%dd.field=f.text_area :description
-		.action=f.submit "add post"
+		-@user.groups_as_owner.each do |x|
+			%dt= f.label x.name
+			%dd= check_box_tag("groups[]", x.id)
+	.action=f.submit "add post"

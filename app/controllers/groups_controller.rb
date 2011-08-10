@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
+    @posts = @group.posts
   end
   
   def index
@@ -25,7 +26,7 @@ class GroupsController < ApplicationController
   end
   
   def create
-    @group = Group.new(params[:group])
+    @group = current_user.groups_as_owner.build(params[:group])
     if @group.save
       redirect_to @group
     else

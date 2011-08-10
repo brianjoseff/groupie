@@ -1,4 +1,7 @@
-%h1 Sign up
+-if current_user == nil
+	%h1 Sign up
+-else
+	%h1 Edit
 -form_for(:user, :url => users_path, :html => {:multipart => true}) do |f|
 	%dl
 		-if signed_in?
@@ -12,7 +15,7 @@
 		%dd.field=f.password_field :password
 		%dt.field=f.label :password_confirmation
 		%dd.field=f.password_field :password_confirmation	
-	-if !signed_in?
+	-if current_user == nil
 		.action=f.submit "Sign up"
 	-else
 		.action=f.submit "Edit details"

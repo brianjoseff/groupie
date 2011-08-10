@@ -6,8 +6,11 @@
 	=link_to "Edit", edit_user_path(@user)
 
 
-%ul
-	/%li= link_to "your items", #
+%ul.sidenav
+	%li= link_to "your items", user_posts_path(@user)
 	%li= link_to "account details", edit_user_path(@user)
-	%li= link_to "add items", new_post_path
+	%li= link_to "add items", new_user_post_path(@user)
 	%li= link_to "create group", new_group_path
+
+%table
+	=render @user.groups_as_owner

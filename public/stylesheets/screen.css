@@ -71,7 +71,11 @@ div.field, div.actions {
 	background: #fff;
 	padding:40px;
 }
-
+.sidenav{
+	border: solid 1px #696969;
+	float:right;
+	padding: 5px;
+}
 span.clear{
 	clear:both;
 }

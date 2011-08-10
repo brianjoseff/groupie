@@ -2,7 +2,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @posts = @user.posts
+    else
+      @posts = Post.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,6 +18,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @user = User.find(current_user.id)
     @post = Post.find(params[:id])
 
     respond_to do |format|
@@ -24,8 +30,9 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new
-
+    @user = User.find(params[:user_id])
+    @post = @user.posts.build
+    @assigment = Assignment.new
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }
@@ -40,20 +47,32 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
-    @post = Post.new(params[:post])
+    @user = User.find(params[:user_id])
+    @post = @user.posts.build(params[:post])
+    @groups = current_user.groups
+    @post.user_id = current_user.id
+    
+    #for each group that is 'assigned' create an assignment object
+    
+    groups = params[:groups]
+    groups.each do |x|
+      @assignment = Assignment.new({:post_id=>params[:id], 
+                                       :group_id=>x.id})
+    end
+    
+    # if groups.assigned?
+    #    @user.groups_as_owner.each do |x|
+    #     for group in groups
+    #    @assignment = Assignment.new({:post_id=>params[:id], 
+    #                                     :group_id=>x.id})
+    #    end
+    #  end
+    #end
+    
     if @post.save
       redirect_to @post
     else
       redirect_to user_show(current_user)
-    end
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to(@post, :notice => 'Post was successfully created.') }
-        format.xml  { render :xml => @post, :status => :created, :location => @post }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
-      end
     end
   end
 

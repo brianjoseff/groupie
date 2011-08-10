@@ -1,6 +1,8 @@
 Groupie::Application.routes.draw do
   resources :posts
-  resources :users
+  resources :users do
+    resources :posts
+  end
   resources :groups
   resources :sessions, :only => [:new, :create, :destroy]
   
