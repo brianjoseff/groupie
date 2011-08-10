@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :get_post_and_user, :except => [:index]
   # GET /posts
   # GET /posts.xml
   def index
@@ -41,24 +42,25 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post = Post.find(params[:id])
+    
   end
 
   # POST /posts
   # POST /posts.xml
   def create
     @user = User.find(params[:user_id])
+    params[:post][:group_ids] ||= []
     @post = @user.posts.build(params[:post])
     @groups = current_user.groups
     @post.user_id = current_user.id
     
     #for each group that is 'assigned' create an assignment object
     
-    groups = params[:groups]
-    groups.each do |x|
-      @assignment = Assignment.new({:post_id=>params[:id], 
-                                       :group_id=>x.id})
-    end
+    # group_ids = params[:post][:groups]
+    #     groups.each do |x|
+    #       @assignment = Assignment.new({:post_id=>params[:id], 
+    #                                        :group_id=>x.id})
+    #     end
     
     # if groups.assigned?
     #    @user.groups_as_owner.each do |x|
@@ -79,6 +81,7 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
+    params[:post][:group_ids] ||= []
     @post = Post.find(params[:id])
 
     respond_to do |format|
@@ -102,5 +105,10 @@ class PostsController < ApplicationController
       format.html { redirect_to(posts_url) }
       format.xml  { head :ok }
     end
+  end
+  private
+  def get_post_and_user
+    @user = User.find(params[:user_id]) if params[:user_id]
+    @post = Post.find(params[:id])
   end
 end
