@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :get_post_and_user, :except => [:index]
+  #before_filter :get_post_and_user, :except => [:index, :new]
   # GET /posts
   # GET /posts.xml
   def index
@@ -109,6 +109,6 @@ class PostsController < ApplicationController
   private
   def get_post_and_user
     @user = User.find(params[:user_id]) if params[:user_id]
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:post][:id])
   end
 end

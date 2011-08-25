@@ -1,4 +1,5 @@
 -form_for([@user,@post], :html => { :multipart => true}) do |f|
+	=render "shared/error_messages", :target => @user
 	=hidden_field_tag 'user_id', @user.id
 	%dl
 		%dt.field=f.label :image

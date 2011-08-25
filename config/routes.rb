@@ -1,10 +1,15 @@
 Groupie::Application.routes.draw do
+  get "memberships/index"
+
+  get "memberships/update"
+
   resources :posts
   resources :users do
     resources :posts
   end
   resources :groups
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :memberships
   
   match '/signout', :to => 'sessions#destroy'
   match '/signin', :to => 'sessions#new'

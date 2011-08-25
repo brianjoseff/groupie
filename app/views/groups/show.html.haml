@@ -6,4 +6,8 @@
 -else
 	%p SSESES
 
+=render :partial => "join_form"
+
 =render @posts
+%table
+	=render @group.members

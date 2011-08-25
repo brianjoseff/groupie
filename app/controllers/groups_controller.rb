@@ -2,6 +2,7 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @posts = @group.posts
+    @memberships = Membership.find_all_by_group_id(@group)
   end
   
   def index
@@ -32,5 +33,10 @@ class GroupsController < ApplicationController
     else
       redirect_to user_show(current_user)
     end
+  end
+  
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
   end
 end

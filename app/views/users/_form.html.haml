@@ -3,7 +3,7 @@
 -else
 	%h1 Edit
 -form_for(@user, :html => {:multipart => true}) do |f|
-  =render "shared/errors", :target => @user
+	=render "shared/error_messages", :target => @user
 	%dl
 		-if signed_in?
 			%dt.field=f.label :avatar
@@ -11,15 +11,15 @@
 		%dt.field=f.label :name
 		%dd.field=f.text_field :name
 		%dt.field=f.label :email
-		%dd.field=f.text_field :email	
-    -if @user.new_record?
-      %dt.field=f.label :password
-      %dd.field=f.password_field :password
-      %dt.field=f.label :password_confirmation
-      %dd.field=f.password_field :password_confirmation
-	-if current_user == nil
-		.action=f.submit "Sign up"
-	-else
-		.action=f.submit "Edit details"
+		%dd.field=f.text_field :email
+		-if @user.new_record?
+			%dt.field=f.label :password
+			%dd.field=f.password_field :password
+			%dt.field=f.label :password_confirmation
+			%dd.field=f.password_field :password_confirmation
+		-if current_user == nil
+			.action=f.submit "Sign up"
+		-else
+			.action=f.submit "Edit details"
 
 

@@ -79,3 +79,28 @@ div.field, div.actions {
 span.clear{
 	clear:both;
 }
+
+
+table{
+	
+}
+
+td{
+	padding: 5px;
+}
+
+tr{
+	border-bottom: solid 1px #b9b9b9;
+}
+
+.user_brief{
+	width: 250px;
+	height: 100px;
+	float: left;
+	margin: 8px;
+	text-align: center;
+}
+
+.group_brief{
+	
+}

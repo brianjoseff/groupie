@@ -1,0 +1,4 @@
+-if @group.members.include?(current_user)
+	=render :partial => "leave"
+-else
+	=render :partial => "join"
