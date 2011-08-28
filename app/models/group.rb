@@ -1,8 +1,7 @@
 class Group < ActiveRecord::Base
   has_many :memberships
-  has_many :users,      :through => :memberships
-  has_many :members,    :through => :memberships, :source => :member
-  belongs_to :owner,    :class_name => "User", :foreign_key => :user_id
+  has_many :members,    :through => :memberships, :source => :member, :foreign_key => :member_id
+  belongs_to :owner,    :class_name => "User"
   
   has_many :assignments
   has_many :posts,      :through => :assignments

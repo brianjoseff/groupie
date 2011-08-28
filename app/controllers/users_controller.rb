@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => :create
   
+  #disparity between group id stored in membership and actual gorup id
   def show
     @user = User.find(params[:id])
-    @groups = @user.groups
+    @memberships = @user.memberships
+    ids = @memberships.collect { |i| i.group_id }
+    @groups = Group.where(:id => ids)
   end
   
   def index

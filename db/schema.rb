@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(:version => 20110809214319) do
     t.datetime "updated_at"
   end
 
+  add_index "memberships", ["group_id"], :name => "index_memberships_on_group_id"
+  add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
+
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.boolean  "borrow"

@@ -12,8 +12,12 @@ class User < ActiveRecord::Base
                        :length       => { :within => 6..40 }
                        
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
-  has_many :memberships, :dependent => :destroy
-  has_many :groups, :through => :memberships
+  has_many :memberships, :dependent => :destroy, :foreign_key => :member_id
+  has_many :groups_as_member, :through => :memberships, :source => :group, :class_name => "Group"
   has_many :groups_as_owner, :class_name => "Group"
   has_many :posts
+  
+  def join!(group)
+    memberships.create!(:group_id => group.id)
+  end
 end

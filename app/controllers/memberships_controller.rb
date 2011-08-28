@@ -7,16 +7,14 @@ class MembershipsController < ApplicationController
   
   #create a membership
   def create
-    @membership = Membership.create({:group_id=>params[:group_id], 
-                                     :member_id=>current_user.id})
     @group = Group.where(:group_id => params[:id])
-                                     
-    if @membership.save
+    @user = current_user
+    if current_user.join!(@group)                                 
       #run ajax that switches 'join' button to 'leave' button
-      redirect_to :root
+      redirect_to @user
     else
       #error message or something
-      render :root
+      redirect_to @group
     end
   end
   
