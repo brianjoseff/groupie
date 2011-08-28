@@ -4,9 +4,8 @@ class UsersController < ApplicationController
   #disparity between group id stored in membership and actual gorup id
   def show
     @user = User.find(params[:id])
-    @memberships = @user.memberships
-    ids = @memberships.collect { |i| i.group_id }
-    @groups = Group.where(:id => ids)
+    @public_groups = Group.public
+    @groups = @user.groups_as_member
   end
   
   def index

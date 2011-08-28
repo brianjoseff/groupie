@@ -7,11 +7,10 @@ class HomeController < ApplicationController
     else
       @user = User.new
     end
-    
   end
   
   def home
-    if current_user.id == nil
+    if !current_user
       @user = User.new
     else
       @user = current_user

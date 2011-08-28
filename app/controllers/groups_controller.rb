@@ -20,6 +20,11 @@ class GroupsController < ApplicationController
   
   def update
     @group = Group.find(params[:id])
+    params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten 
+    if @group.update_attributes(params[:group])
+      redirect_to @group
+      flash[:success] = "group updated"
+    end
   end
   
   def new

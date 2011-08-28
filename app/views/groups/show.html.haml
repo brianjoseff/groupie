@@ -1,13 +1,14 @@
 %h1= @group.name
-=image_tag(@group.photo.url(:small))
+-if !@group.photo_file_name.blank?
+  =image_tag(@group.photo.url(:small))
 %p= @group.description
 -if @group.user_id
-	=@group.user_id
+  =@group.user_id
 -else
-	%p SSESES
+  %p SSESES
 
 =render :partial => "join_form"
 
 =render @posts
 %table
-	=render @group.members
+  =render @group.members
