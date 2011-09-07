@@ -12,8 +12,9 @@
 		<%- for msg in [:notice, :success, :failure, :error] %>
 		  <%= flash[msg] if !flash[msg].blank? %>
 	  <%-end-%>
-		<section class = "content">
+		<section class = "main">
 			<%= yield %>
+			<div class="clear"></div>
 		</section>
 		<%= render "shared/footer" %>
 	</div>	

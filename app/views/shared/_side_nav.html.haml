@@ -1,0 +1,5 @@
+%ul.sidenav
+	%li= link_to "your items", user_posts_path(current_user)
+	%li= link_to "account details", edit_user_path(current_user)
+	%li= link_to "add items", new_user_post_path(current_user)
+	%li= link_to "create group", new_group_path

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   #disparity between group id stored in membership and actual gorup id
   def show
     @public_groups = Group.public
-    @groups = @user.groups_as_member
+    @groups_member = @user.groups_as_member
   end
   
   def edit

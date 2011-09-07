@@ -1,14 +1,21 @@
-%h1= @group.name
--if !@group.photo_file_name.blank?
-  =image_tag(@group.photo.url(:small))
-%p= @group.description
--if @group.user_id
-  =@group.user_id
--else
-  %p SSESES
-
-=render :partial => "join_form"
-
-=render @posts
-%table
-  =render @group.members
+.content
+	%h1= @group.name
+	-if @group.photo
+		=link_to image_tag(@group.photo.url(:small), :alt => @group.name), group_url(@group)
+	-else
+		%p dsfaklfdskjljlkafd
+	%p= @group.description
+	-if @group.user_id
+		=@group.user_id
+	-else
+		%p blah blah blah
+	=render :partial => "join_form"
+	%br
+	%br/
+	%h2 items
+	%table
+		=render @group.posts
+	%h2 members
+	%table
+		=render @group.members
+=render :partial => 'shared/side_nav'

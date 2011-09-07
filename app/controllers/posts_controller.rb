@@ -51,8 +51,8 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     params[:post][:group_ids] ||= []
     @post = @user.posts.build(params[:post])
-    @groups = current_user.groups
-    @post.user_id = current_user.id
+#    @groups = current_user.groups
+#    @post.user_id = current_user.id
     
     #for each group that is 'assigned' create an assignment object
     
@@ -72,7 +72,7 @@ class PostsController < ApplicationController
     #end
     
     if @post.save
-      redirect_to @post
+      redirect_to @user
     else
       redirect_to user_show(current_user)
     end

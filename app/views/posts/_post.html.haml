@@ -1,4 +1,13 @@
-=link_to image_tag(post.image.url(:thumb), :alt => post.name)
-%p=post.name
-%p=post.price
-%br
+%div.result
+	%div.image
+		=link_to image_tag(post.image.url(:thumb), :alt => post.name), post_url(post)
+	%div.data
+		%div.title
+			=link_to post.name, post_url(post)
+		%div.price
+			%p $#{post.price}
+		%div.description
+			=post.description
+		-if post.user == current_user
+			%td=link_to 'Edit', edit_post_path(post)
+			%td=link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
