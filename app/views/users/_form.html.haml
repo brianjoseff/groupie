@@ -15,8 +15,6 @@
 		-if @user.new_record?
 			%dt.field=f.label :password
 			%dd.field=f.password_field :password
-			%dt.field=f.label :password_confirmation
-			%dd.field=f.password_field :password_confirmation
 		-if current_user == nil
 			.action=f.submit "Sign up"
 		-else

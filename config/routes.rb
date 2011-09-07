@@ -2,10 +2,13 @@ Groupie::Application.routes.draw do
   get "memberships/index"
 
   get "memberships/update"
-
+  
   resources :posts
   resources :users do
     resources :posts
+  end
+  namespace :admin do 
+    resources :users
   end
   resources :groups
   resources :sessions, :only => [:new, :create, :destroy]

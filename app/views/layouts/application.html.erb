@@ -9,6 +9,9 @@
 <body>
 	<div class ="container">
 		<%= render "shared/header" %>
+		<%- for msg in [:notice, :success, :failure, :error] %>
+		  <%= flash[msg] if !flash[msg].blank? %>
+	  <%-end-%>
 		<section class = "content">
 			<%= yield %>
 		</section>

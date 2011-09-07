@@ -1,26 +1,21 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => :create
+  before_filter :get_user, :except => [:index, :create, :new]
+  before_filter :authorize, :except => [:create, :new]
   
   #disparity between group id stored in membership and actual gorup id
   def show
-    @user = User.find(params[:id])
     @public_groups = Group.public
     @groups = @user.groups_as_member
   end
   
-  def index
-    @users = User.all
-  end
-  
   def edit
-    @user = User.find(params[:id])
     unless current_user == @user
       deny_access(flash_message= "sorry, you can only edit your own stuff")
     end
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
@@ -48,9 +43,12 @@ class UsersController < ApplicationController
   end
   
   private
-  def belongs_to_current_user
+  def get_user
+    @user = User.find(params[:id])
+  end
+  def authorize
     unless current_user == @user
-      deny_access(flash_message= "sorry, you can only edit your own stuff")
+      redirect_to current_user, :flash => {:notice => "Sorry, you can only view your own stuff"}
     end
   end
 end
