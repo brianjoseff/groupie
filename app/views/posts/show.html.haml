@@ -1,13 +1,17 @@
-=image_tag(@post.image.url(:small))
-%p
-	%b Name:
-	=@post.name
-%p
-	%b Borrow?:
-	=@post.borrow
-%p
-	%b Price:
-	=@post.price
-%p
-	%b Description:
-	=@post.description
+.content
+	-if @post.image
+		=image_tag(@post.image.url(:small))
+	-else
+		=image_tag(@post.image.default_url)
+	%p
+		%b Name:
+		=@post.name
+	%p
+		%b Borrow?:
+		=@post.borrow
+	%p
+		%b Price:
+		$#{@post.price}
+	%p
+		%b Description:
+		=@post.description

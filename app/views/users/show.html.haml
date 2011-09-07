@@ -1,19 +1,17 @@
-%h1= @user.name
-%p email: #{@user.email}
-%p school: #{@user.school}
+.content	
+	%h1= @user.name
+	%p email: #{@user.email}
+	%p school: #{@user.school}
 
--if current_user == @user
-	=link_to "Edit", edit_user_path(@user)
-
-
-%ul.sidenav
-	%li= link_to "your items", user_posts_path(@user)
-	%li= link_to "account details", edit_user_path(@user)
-	%li= link_to "add items", new_user_post_path(@user)
-	%li= link_to "create group", new_group_path
-
-%table
-	=render @user.groups_as_owner
-%table	
-	=render @groups
-=render :partial => "form_after_signup"
+	-if current_user == @user
+		=link_to "Edit", edit_user_path(@user)
+	%br
+	%br/
+	%h2 your groups...
+	%table
+		=render @user.groups_as_owner
+	%h2 you are a member of...
+	%table	
+		=render @groups_member
+	=render :partial => "form_after_signup"
+=render :partial => 'shared/side_nav'

@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'clearance'
 gem "haml"
 gem "paperclip", "~> 2.3"
+gem "forgery", "~> 0.3.12"
+gem 'faker'
 
 # Use unicorn as the web server
 # gem 'unicorn'

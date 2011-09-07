@@ -37,6 +37,10 @@ GEM
       railties
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faker (0.9.5)
+      i18n (~> 0.4)
+    forgery (0.3.12)
+      nokogiri (~> 1.4)
     haml (3.1.2)
     i18n (0.6.0)
     mail (2.2.19)
@@ -45,6 +49,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    nokogiri (1.4.6)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -79,6 +84,8 @@ PLATFORMS
 
 DEPENDENCIES
   clearance
+  faker
+  forgery (~> 0.3.12)
   haml
   paperclip (~> 2.3)
   rails (= 3.0.4)

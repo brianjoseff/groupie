@@ -1,0 +1,3 @@
+/-Group.all.each do |group|
+/	%dt= label_tag "group_checkbox_#{group.id}", group.name
+/	%dd= check_box_tag("post[group_ids]", group.id, /@user.groups_as_owner.include?(group), :id => /"group_checkbox_#{group.id}")

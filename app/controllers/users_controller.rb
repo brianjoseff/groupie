@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @public_groups = Group.public
-    @groups = @user.groups_as_member
+    @groups_member = @user.groups_as_member
   end
   
   def index

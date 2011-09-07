@@ -1,9 +1,10 @@
 %tr
 	%td
-		-if user.avatar
+		-if user.avatar?
 			=link_to image_tag(user.avatar.url(:thumb), :alt => user.name), user_url(user)
 		-else
-			%p '(:'
+			%p fuck
+			%img{:src => ':rails_root/public/system/avatars/missing/thumb.png'}/
 	%td
 		=link_to user.name, user_url(user)
 	%td
