@@ -10,7 +10,7 @@ h2{
 	margin-bottom:1em;
 }
 .container{
-	width:900px;
+	width:1000px;
 	margin:auto;
 	padding: 10px;
 }
@@ -19,9 +19,12 @@ body{
 	width:100%;
 }
 header{
-	width:900px;
+	width:1000px;
 	margin:auto;
-	background: #f92034;
+}
+header img{
+	float:left;
+	margin-bottom:10px;
 }
 section{
 	clear:both;
@@ -37,9 +40,9 @@ footer{
 
 /* navigation bar */
 nav{
+	float:right;
 }
 nav ul{
-	float:right;
 	background: #fff;
 	margin-bottom:10px;
     padding-left: 5px;
@@ -126,16 +129,51 @@ th{
 	padding-right: 10px;
 	padding-left: 5px;
 }
+
+
+/*------- Results -------*/
 div.result{
 	border-top: 1px solid #DDDDDD;
 	padding: 8px 0 4px;
+	margin-bottom:0;
+	min-height: 115px;
 }
+
 div.result .image{
 	float:left;
 	width:115px;
 }
-div.image{
-	
+
+div.price{
+	font-weight: ;
+	padding-top:5px;
+}
+
+/*-----------------------*/
+
+/*------ Show --------*/
+div.show{
+	padding: 8px 0 4px;
+	margin-bottom:0;
+	min-height: 115px;
+}
+div.show .image{
+	float:left;
+	width:115px;
+}
+
+/*---------------------*/
+.special_link a{
+	color: #64b39b;
+}
+.special_link2{
+	font-size: 90%;
+	padding:0px;
+	margin:0px;
+}
+.special_link2 a:hover{
+	text-decoration:underline;
+	background-color: none;
 }
 .user_brief{
 	width: 250px;

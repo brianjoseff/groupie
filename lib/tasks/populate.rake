@@ -7,8 +7,7 @@ namespace :db do
     [User, Group, Membership, Assignment, Post].each(&:delete_all)
     User.create!(:name => "Brian",
                  :email => "b@b.edu",
-                 :password => "000000",
-                 :password_confirmation => "000000")
+                 :password => "000000")
     
     #users
     15.times do |n|
@@ -25,7 +24,7 @@ namespace :db do
     
     #group data
     10.times do |y|
-      name = Forgery(:LoremIpsum).word(:random => true) + "group"
+      name = Forgery(:LoremIpsum).word(:random => true) + " group"
       description = Forgery(:LoremIpsum).paragraph(:random => true)
       user_id = Forgery(:Basic).number(:at_least => 1, :at_most => 15)
       Group.create!(:name => name,
@@ -48,13 +47,16 @@ namespace :db do
     end
     
     #memberships
-    50.times do |z|
-      group_id = Forgery(:Basic).number(:at_least => 1, :at_most => 10)
-      user_id = Forgery(:Basic).number(:at_least => 1, :at_most => 15)
-      
-      Membership.create!(:group_id => group_id,
-                         :member_id => user_id)
-    end
+    users = User.all
+    users.each { |user|
+      2.times do |x|
+        begin 
+          group_id = Forgery(:Basic).number(:at_least => 1, :at_most => 10)
+        end until Membership.create(:group_id => group_id,
+                           :member_id => user.id)
+      end
+    }
+    
     
     #assignments
     80.times do |x|

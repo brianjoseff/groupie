@@ -1,6 +1,6 @@
 %h1 Sign in
 -form_for(:session, :url => sessions_path) do |f|
-  =render "shared/error_messages", :target => @user
+  /=render "shared/error_messages", :target => @user
   %dl
     %dt.field=f.label :email
     %dd.field=f.text_field :email

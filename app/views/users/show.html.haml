@@ -1,10 +1,13 @@
 .content	
-	%h1= @user.name
-	%p email: #{@user.email}
-	%p school: #{@user.school}
-
-	-if current_user == @user
-		=link_to "Edit", edit_user_path(@user)
+	%div.show
+		%div.image
+			=link_to image_tag(@user.avatar.url(:medium), :alt => @user.name), user_url(@user)
+		%div.data
+			%h1= @user.name
+			%p email: #{@user.email}
+			%p school: #{@user.school}
+			-if current_user == @user
+				=link_to "Edit", edit_user_path(@user)
 	%br
 	%br/
 	%h2 your groups...

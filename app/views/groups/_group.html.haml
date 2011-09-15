@@ -1,12 +1,13 @@
-%tr
-	%td
-		-if group.photo
-			=link_to image_tag(group.photo.url(:thumb), :alt => group.name), group_url(group)
-		-else
-			%p '(:'
-	%td
-		=link_to group.name, group_url(group)
-	%td
-		=group.description
-	%td
-		=group.user_id
+%div.result
+	%div.image
+		=link_to image_tag(group.photo.url(:thumb), :alt => group.name), group_url(group)
+	%div.data
+		%div.title
+			=link_to group.name, group_url(group)
+		%div.description
+			=group.description
+			.special_link=link_to "See items", group_url(group)
+		-if group.owner == current_user
+			.special_link2
+				=link_to 'Edit', edit_group_path(group)
+				=link_to 'Destroy', group, :confirm => 'Are you sure?', :method => :delete

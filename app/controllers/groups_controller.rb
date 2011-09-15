@@ -1,11 +1,13 @@
 class GroupsController < ApplicationController
+  before_filter :get_group, :except => [:index, :create, :new]
   def show
-    @group = Group.find(params[:id])
+    @title = @group.name
     @posts = @group.posts
     @memberships = Membership.find_all_by_group_id(@group)
   end
   
   def index
+    @title = "Groups"
     if params[:user_id]
       @user = User.find(params[:user_id])
       @groups = @user.groups
@@ -15,11 +17,13 @@ class GroupsController < ApplicationController
   end
   
   def edit
-    @group = Group.find(params[:id])
+    @user = @group.owner
+    unless current_user == @user
+      redirect_to current_user, :flash => {:notice => "Sorry, you can only view your own stuff"}
+    end
   end
   
   def update
-    @group = Group.find(params[:id])
     params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten 
     if @group.update_attributes(params[:group])
       redirect_to @group
@@ -41,7 +45,11 @@ class GroupsController < ApplicationController
   end
   
   def destroy
-    @group = Group.find(params[:id])
     @group.destroy
+  end
+  
+  private
+  def get_group
+    @group = Group.find(params[:id])
   end
 end

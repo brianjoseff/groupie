@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => :create
   before_filter :get_user, :except => [:index, :create, :new]
-  before_filter :authorize, :except => [:create, :new]
+  before_filter :authorize, :except => [:create, :new, :show]
   
   #disparity between group id stored in membership and actual gorup id
   def show
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     
     #integrate with 'clearance' gem
     if @user.save
+      GroupMailer.weekly_newsletter(@user).deliver
       sign_in @user
       redirect_to @user, :success => "Welcome to groupie"
     else

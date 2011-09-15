@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
   has_attached_file :photo, :styles => { :thumb => "100x100",
                                          :small => "200x200" },
                     :path => ":rails_root/public/system/photos/:id/:style/:basename.:extension",
-                    :default_url => ":rails_root/public/system/photos/missing/:style.png"
+                    :default_url => "/system/photos/missing/:style.png"
                     
 
 

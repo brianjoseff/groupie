@@ -1,4 +1,6 @@
--if @group.members.include?(current_user)
+-if @group.owner == current_user
+	=link_to "Edit Group", edit_group_path(@group)
+-elsif @group.members.include?(current_user)
 	=render :partial => "leave"
 -else
 	=render :partial => "join"

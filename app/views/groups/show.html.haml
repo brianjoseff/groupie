@@ -1,15 +1,15 @@
 .content
-	%h1= @group.name
-	-if @group.photo
-		=link_to image_tag(@group.photo.url(:small), :alt => @group.name), group_url(@group)
-	-else
-		%p dsfaklfdskjljlkafd
-	%p= @group.description
-	-if @group.user_id
-		=@group.user_id
-	-else
-		%p blah blah blah
-	=render :partial => "join_form"
+	%div.show
+		%div.image
+			=link_to image_tag(@group.photo.url(:thumb), :alt => @group.name), group_url(@group)
+		%div.data
+			%h1= @group.name
+			%p= @group.description
+			-if current_user == @user
+				=link_to "Edit", edit_group_path(@group)
+			%br
+			%br/
+			=render :partial => "join_form"
 	%br
 	%br/
 	%h2 items

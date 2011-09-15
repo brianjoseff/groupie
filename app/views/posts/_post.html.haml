@@ -9,5 +9,5 @@
 		%div.description
 			=post.description
 		-if post.user == current_user
-			%td=link_to 'Edit', edit_post_path(post)
-			%td=link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
+			=link_to 'Edit', edit_post_path(post)
+			=link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete
