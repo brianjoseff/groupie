@@ -102,7 +102,7 @@ div.field, div.actions {
 .content{
 	float:left;
 	background-color: #fff;
-	width:600px;
+	width:650px;
 }
 span.clear{
 	clear:both;
@@ -154,7 +154,7 @@ div.price{
 /*------ Show --------*/
 div.show{
 	padding: 8px 0 4px;
-	margin-bottom:0;
+	margin-bottom:10px;
 	min-height: 115px;
 }
 div.show .image{
@@ -163,6 +163,37 @@ div.show .image{
 }
 
 /*---------------------*/
+
+
+
+/*---small post---*/
+div.small_post{
+	border: 1px solid #DDDDDD;
+	margin-bottom: 15px;
+	min-height: 130px;
+}
+div.small_result{
+	display:inline-block;
+	padding: 8px 4px 4px;
+	margin-bottom:0;
+	min-height: 115px;
+}
+div.small_result .small_image{
+	width:115px;
+}
+div.small_result .small_title,.small_price{
+	text-align:center;
+}
+div.small_price{
+	font-weight: ;
+	padding-top:5px;
+}
+/*----------------*/
+
+
+
+
+
 .special_link a{
 	color: #64b39b;
 }

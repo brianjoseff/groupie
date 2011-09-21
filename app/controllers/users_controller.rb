@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   def show
     @public_groups = Group.public
     @groups_member = @user.groups_as_member
+    @groups_as_owner = @user.groups_as_owner
+
+      @random_items = [Post.find_by_id(@groups_member.rand.id),Post.find_by_id(@groups_member.rand.id),Post.find_by_id(@groups_member.rand.id),Post.find_by_id(@groups_member.rand.id),Post.find_by_id(@groups_member.rand.id)]
   end
   
   def edit

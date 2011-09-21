@@ -11,8 +11,12 @@
 		%dt.field=f.label :price
 		%dd.field=f.text_field :price		
 		%dt.field=f.label :description
-		%dd.field=f.text_area :description    
+		%dd.field=f.text_area :description
+		%h2 choose which groups you want to post this item to    
 		-@user.groups_as_owner.each do |group|
 			%dt= label_tag "group_checkbox_#{group.id}", group.name
 			%dd= check_box_tag("post[group_ids]", group.id, @user.groups_as_owner.include?(group), :id => "group_checkbox_#{group.id}")
+		-@user.groups_as_member.each do |group|
+			%dt= label_tag "group_checkbox_#{group.id}", group.name
+			%dd= check_box_tag("post[group_ids]", group.id, @user.groups_as_member.include?(group), :id => "group_checkbox_#{group.id}")
 	.action=f.submit "Save Post"

@@ -42,7 +42,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    
+    @post = Post.find(params[:id])
+    @user = User.find(@post.user_id)
   end
 
   # POST /posts

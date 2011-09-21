@@ -8,8 +8,8 @@
 			%p school: #{@user.school}
 			-if current_user == @user
 				=link_to "Edit", edit_user_path(@user)
-	%br
-	%br/
+	%div.small_post
+		=render :partial => "posts/small_post", :collection => @random_items
 	%h2 your groups...
 	%table
 		=render @user.groups_as_owner
