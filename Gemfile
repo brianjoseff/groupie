@@ -18,6 +18,17 @@ gem 'faker'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+group :development do
+  gem 'rspec-rails', '2.6.1'
+end
+
+group :test do
+  gem 'rspec-rails', '2.6.1'
+  gem 'webrat', '0.7.1'
+  gem 'spork', '0.9.0.rc8'
+  gem 'factory_girl_rails', '1.0'
+end
+
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
 # gem 'ruby-debug'
 # gem 'ruby-debug19'

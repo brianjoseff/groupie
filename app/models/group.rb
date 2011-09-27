@@ -12,6 +12,11 @@ class Group < ActiveRecord::Base
                     :path => ":rails_root/public/system/photos/:id/:style/:basename.:extension",
                     :default_url => "/system/photos/missing/:style.png"
                     
-
-
+  
+  def get_random
+#    assignments = assignments.limit(5)
+#    return Post.rand_by_post(assignments)
+#    member_groups.sort_by{rand}.slice(0,5)
+    assignments.sort_by{rand}.first
+  end
 end

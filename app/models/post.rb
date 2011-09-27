@@ -8,4 +8,7 @@ class Post < ActiveRecord::Base
                             :path => ":rails_root/public/system/images/:id/:style/:basename.:extension",
                             :default_url => "/system/images/missing/:style.png"
 
+  def self.rand_by_post(assignments)
+    find_by_id(assignments.rand.post_id)
+  end
 end

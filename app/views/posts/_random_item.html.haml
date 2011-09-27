@@ -1,0 +1,11 @@
+%div.small_result
+	%div.small_image
+		=link_to image_tag(post.image.url(:thumb), :alt => post.name), post_url(post)
+	%div.small_data
+		%div.small_title
+			=link_to post.name, post_url(post)
+		%div.small_price
+			%p $#{post.price}
+		-if post.user == current_user
+			=link_to 'Edit', edit_post_path(post)
+			=link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete

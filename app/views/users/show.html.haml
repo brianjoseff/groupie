@@ -9,11 +9,17 @@
 			-if current_user == @user
 				=link_to "Edit", edit_user_path(@user)
 	%div.small_post
-		=render :partial => "posts/small_post", :collection => @random_items
-	%h2 your groups...
+		=render :partial => "posts/random_item", :collection => @random_items, :as => :post
+	-if current_user == @user
+		%h2 your groups...
+	-else
+		%h2 #{@user.name} groups
 	%table
 		=render @user.groups_as_owner
-	%h2 you are a member of...
+	-if current_user == @user 
+		%h2 you are a member of...
+	-else
+		%h2 #{@user.name} is a member of:
 	%table	
 		=render @groups_member
 	=render :partial => "form_after_signup"
