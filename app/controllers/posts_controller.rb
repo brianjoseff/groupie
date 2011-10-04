@@ -75,7 +75,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to @user
     else
-      redirect_to user_show(current_user)
+      redirect_to new_user_post_path(current_user)
     end
   end
 
