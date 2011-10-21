@@ -11,13 +11,15 @@
 	%div.small_post
 		=render :partial => "posts/random_item", :collection => @random_items, :as => :post
 	-if current_user == @user
-		%h2 your groups...
+		%h2 your groups:
+		.special_link=link_to "create a group", new_group_path
 	-else
 		%h2 #{@user.name} groups
 	%table
 		=render @user.groups_as_owner
 	-if current_user == @user 
-		%h2 you are a member of...
+		%h2 you are a member of:
+		.special_link=link_to "search groups", groups_path
 	-else
 		%h2 #{@user.name} is a member of:
 	%table	

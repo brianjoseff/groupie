@@ -1,5 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :images
+  has_many :emails
+  
   belongs_to :user
   has_many :assignments, :dependent => :destroy
   has_many :groups, :through => :assignments

@@ -1,12 +1,20 @@
 Groupie::Application.routes.draw do
+  resources :emails
+
   get "memberships/index"
 
   get "memberships/update"
+  
   
   resources :posts
   resources :users do
     resources :posts
   end
+  resources :emails
+  resources :posts do
+    resources :emails
+  end
+  
   namespace :admin do 
     resources :users
   end

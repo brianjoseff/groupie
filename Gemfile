@@ -19,14 +19,14 @@ gem 'faker'
 # gem 'capistrano'
 
 group :development do
-  gem 'rspec-rails', '2.6.1'
+ 
 end
 
+gem "rspec-rails", :group => [:test, :development]
 group :test do
-  gem 'rspec-rails', '2.6.1'
-  gem 'webrat', '0.7.1'
-  gem 'spork', '0.9.0.rc8'
-  gem 'factory_girl_rails', '1.0'
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
 end
 
 # To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)

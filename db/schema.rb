@@ -10,13 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911014126) do
+ActiveRecord::Schema.define(:version => 20111018015346) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "group_id"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "emails", :force => true do |t|
+    t.string   "subject"
+    t.text     "content"
+    t.integer  "to",         :limit => 255
+    t.integer  "from",       :limit => 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "post_id"
   end
 
   create_table "groups", :force => true do |t|

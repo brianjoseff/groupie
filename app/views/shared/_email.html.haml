@@ -1,0 +1,11 @@
+-form_for([@post,@email], :html => { :multipart => true}) do |f|
+	=render "shared/error_messages", :target => @post
+	=hidden_field_tag 'post_id', @post.id
+	=hidden_field_tag 'to', @owner.id
+	=hidden_field_tag 'from', current_user.id
+	%dl
+		%dt.field=f.label :subject
+		%dd.field=f.text_field :subject	
+		%dt.field=f.label :content
+		%dd.field=f.text_area :content
+	.action=f.submit "Send Email"

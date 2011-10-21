@@ -4,7 +4,8 @@ describe UsersController, "show User" do
   @user ={
     :name => "Michael Hartl",
     :email => "mhartl@example.com",
-    :password => "foobar"
+    :password => "foobar",
+    :id => 1
   }
   
   

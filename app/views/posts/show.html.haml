@@ -15,5 +15,6 @@
 	%p
 		%b Description:
 		=@post.description
-	%link_to
-		=@owner.name
+	/=render :controller => :emails, :action => :new
+	=render :partial => 'shared/email'
+	/=render :partial => 'emails/new'

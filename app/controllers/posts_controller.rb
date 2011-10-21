@@ -21,12 +21,34 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @owner = User.find(@post.user_id)
-
+    @email = @post.emails.build
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post }
     end
   end
+  
+#  def email
+#    @post = Post.find(params[:id])
+#    @owner = User.find(@post.user_id)
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @post }
+#    end
+#  end
+  
+#  def send
+#    @post = Post.find(params[:id])
+#    @owner = User.find(@post.user_id)
+#    @subject = params[:subject]
+#    @content = params[:content]
+#    InterestMailer.interest_email(@owner,@post.name,@subject,@content)
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.xml  { render :xml => @post }
+#    end
+#  end
 
   # GET /posts/new
   # GET /posts/new.xml
@@ -107,6 +129,9 @@ class PostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+
+  
   private
   def get_post_and_user
     @user = User.find(params[:user_id]) if params[:user_id]
