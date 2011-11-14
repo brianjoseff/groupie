@@ -41,12 +41,15 @@ class User < ActiveRecord::Base
 #    
 #    return random_items
 #  end
-  
   def get_some_random_items(groups)
     random_items = Array.new
     return nil unless groups.empty? == false
     groups.each do |group|
-      x = Post.rand_by_post(group.assignments)
+      group_posts = Post.find(:all, :conditions => ['group_id = ? ', group.id], :joins => [:assignments])
+      x = group_posts.sample
+      if x.nil?
+        return
+      end
       random_items << x
       if random_items.size == 5
         return random_items
@@ -54,6 +57,39 @@ class User < ActiveRecord::Base
     end
     return random_items
   end
+  
+  def get_randos(groups)
+    all_items = Array.new
+    groups.each do |group|
+      all_items << group.posts
+    end
+    x = all_items.sort_by{rand}.slice(0,5)
+    if x.empty?
+      return joe
+    else
+      return x
+    end
+  end
+#  def get_some_random_items(groups)
+#    random_items = Array.new
+#    group_posts = Post.find(:all, :conditions => ['group.id = ? ', group.id], :joins => [:assignments])
+#    return nil unless groups.empty? == false
+#    while random_items.length < 5 do
+#      x = groups.sample
+#      if x != nil
+#        z = x.get_random
+#        y = Post.find(z.id)
+#        if y.nil?
+#          return
+#        end
+##      end
+#      random_items << y
+#      if random_items.size == 5
+#        return random_items
+#      end
+#    end
+#    return random_items
+#  end
       
     
   

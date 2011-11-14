@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @groups_member = @user.groups_as_member
     @groups_as_owner = @user.groups_as_owner
     
-    @random_items = @user.get_some_random_items(@groups_member)
+    @random_items = @user.get_randos(@groups_member)
   end
   
   def edit

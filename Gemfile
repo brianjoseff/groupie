@@ -5,6 +5,7 @@ gem 'rails', '3.0.4'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'yaml_db'
 #gem 'thinking-sphinx', '2.0.5'
 gem 'sqlite3'
 gem 'clearance'
@@ -12,6 +13,7 @@ gem "haml"
 gem "paperclip", "~> 2.3"
 gem "forgery", "~> 0.3.12"
 gem 'faker'
+gem 'elastic_searchable'
 
 # Use unicorn as the web server
 # gem 'unicorn'

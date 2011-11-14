@@ -17,6 +17,6 @@ class Group < ActiveRecord::Base
 #    assignments = assignments.limit(5)
 #    return Post.rand_by_post(assignments)
 #    member_groups.sort_by{rand}.slice(0,5)
-    assignments.sort_by{rand}.first
+    assignments.sort_by{rand}.slice(0,5)
   end
 end

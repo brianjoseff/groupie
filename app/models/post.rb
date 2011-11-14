@@ -1,7 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :images
   has_many :emails
-  
   belongs_to :user
   has_many :assignments, :dependent => :destroy
   has_many :groups, :through => :assignments
@@ -10,7 +9,16 @@ class Post < ActiveRecord::Base
                             :path => ":rails_root/public/system/images/:id/:style/:basename.:extension",
                             :default_url => "/system/images/missing/:style.png"
 
-  def self.rand_by_post(assignments)
-    find_by_id(assignments.rand.post_id)
+  def self.rand_post(group)
+    #find_by_id(get_assignment_post_id(assignments))
+    z = group.assignments.first(:order => "RANDOM()")
+    if z.nil?
+      return nil
+    end
+    find(z.post_id)
+    #assignments.offset(rand(assignments.count)).first
+  end
+  def get_assignment_post_id(assignments)
+    return assignments.first(:order => "RANDOM()").post_id
   end
 end
