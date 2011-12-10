@@ -5,11 +5,10 @@ Groupie::Application.routes.draw do
 
   get "memberships/update"
   
-  
-  resources :posts
   resources :users do
     resources :posts
   end
+ # match '/search', :to => 'posts#search', :action => "search"
   resources :emails
   resources :posts do
     resources :emails

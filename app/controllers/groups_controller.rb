@@ -12,7 +12,10 @@ class GroupsController < ApplicationController
       @user = User.find(params[:user_id])
       @groups = @user.groups
     else 
-      @groups = Group.all
+      @search = Group.search do
+        fulltext params[:search]
+      end
+      @groups = @search.results
     end
   end
   
@@ -46,6 +49,13 @@ class GroupsController < ApplicationController
   
   def destroy
     @group.destroy
+  end
+  
+  # GET /groups/search
+  def search
+  @groups = Group.search params[:q]
+
+  render :action => "index"
   end
   
   private

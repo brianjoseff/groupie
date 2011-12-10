@@ -2,13 +2,30 @@ class PostsController < ApplicationController
   #before_filter :get_post_and_user, :except => [:index, :new]
   # GET /posts
   # GET /posts.xml
+  def search
+    @search = Post.search do
+      fulltext params[:search]
+    end
+    @posts = @search.results
+  end
+  
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
       @posts = @user.posts
     else
-      @posts = Post.all
+      @search = Post.search do
+        fulltext params[:search]
+      end
+      @posts = @search.results 
     end
+
+#    @user = current_user
+#    @user_posts = @user.posts
+#    @search = Post.search do
+#      fulltext params[:search]
+#    end
+#    @posts = @search.results
 
     respond_to do |format|
       format.html # index.html.erb

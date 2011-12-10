@@ -16,5 +16,8 @@
 		%b Description:
 		=@post.description
 	/=render :controller => :emails, :action => :new
+	%br
+	%p
+		%h1 Interested? email them:
 	=render :partial => 'shared/email'
 	/=render :partial => 'emails/new'

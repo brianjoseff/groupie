@@ -1,0 +1,11 @@
+%div.small_result
+	%div.small_image
+		=link_to image_tag(random_item.image.url(:thumb), :alt => random_item.name), post_url(random_item)
+	%div.small_data
+		%div.small_title
+			=link_to random_item.name, post_url(random_item)
+		%div.small_price
+			%p $#{random_item.price}
+		-if random_item.user == current_user
+			=link_to 'Edit', edit_post_path(random_item)
+			=link_to 'Destroy', random_item, :confirm => 'Are you sure?', :method => :delete

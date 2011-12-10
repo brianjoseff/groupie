@@ -13,7 +13,7 @@ gem "haml"
 gem "paperclip", "~> 2.3"
 gem "forgery", "~> 0.3.12"
 gem 'faker'
-gem 'elastic_searchable'
+gem 'sunspot_rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -22,7 +22,7 @@ gem 'elastic_searchable'
 # gem 'capistrano'
 
 group :development do
- 
+ gem 'sunspot_solr'
 end
 
 gem "rspec-rails", :group => [:test, :development]

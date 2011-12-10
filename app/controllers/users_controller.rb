@@ -8,8 +8,8 @@ class UsersController < ApplicationController
     @public_groups = Group.public
     @groups_member = @user.groups_as_member
     @groups_as_owner = @user.groups_as_owner
-    
-    @random_items = @user.get_randos(@groups_member)
+    @groups = @groups_as_owner + @groups_member
+    @random_items = @user.get_randos(@groups)
   end
   
   def edit

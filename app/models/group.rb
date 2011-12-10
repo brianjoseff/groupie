@@ -6,6 +6,9 @@ class Group < ActiveRecord::Base
   has_many :assignments
   has_many :posts,      :through => :assignments
   scope :public, where("private = ?", false)
+  searchable do
+    text :name, :description
+  end
   
   has_attached_file :photo, :styles => { :thumb => "100x100",
                                          :small => "200x200" },

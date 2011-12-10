@@ -59,13 +59,16 @@ class User < ActiveRecord::Base
   end
   
   def get_randos(groups)
+    if groups == nil
+      return nil
+    end
     all_items = Array.new
     groups.each do |group|
-      all_items << group.posts
+      all_items.concat(group.posts)
     end
     x = all_items.sort_by{rand}.slice(0,5)
     if x.empty?
-      return joe
+      return nil
     else
       return x
     end

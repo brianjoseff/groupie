@@ -8,8 +8,10 @@
 			%p school: #{@user.school}
 			-if current_user == @user
 				=link_to "Edit", edit_user_path(@user)
+	%h2 5 random items:
 	%div.small_post
-		=render :partial => "posts/random_item", :collection => @random_items, :as => :post
+		-unless @random_items.nil?
+			=render :partial => "shared/random_item", :collection => @random_items
 	-if current_user == @user
 		%h2 your groups:
 		.special_link=link_to "create a group", new_group_path
