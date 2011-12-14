@@ -22,10 +22,11 @@ header{
 	width:1000px;
 	margin:auto;
 }
-header img{
+header img, a{
 	float:left;
-	margin-bottom:10px;
+	display:block;
 }
+
 section{
 	clear:both;
 	padding: 50px;
@@ -37,6 +38,51 @@ section{
 footer{
 	margin:5px;
 }
+.pink a:hover { color: #fff; background-color:#ff00c6; }
+.green a:hover { color: #fff; background-color:#0cff00; }
+/* search bar */
+.searchbar {
+	background-image:url('searchbar.png');
+	margin-bottom:10px;
+	width:300px;
+	height: 35px;
+	float:left;
+}
+.search-inner{
+	width: 300px;
+	height: 35px;
+	margin-bottom:10px;
+}
+
+.search-inner form input#searchbutton:hover{
+	background-color:#1bead4;
+	cursor:pointer;
+}
+.search-inner form input#searchbutton{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#fff;
+	font-size:11px;
+	border-style: solid;
+	border-width: 5px;
+	border-color: #fff;        
+	font-weight:bold;
+	background-color: #696969;
+	width:50px;
+	height:35px;
+}
+.search-inner form input#searchfield{
+	height:35px;
+	width: 225px;
+	margin-left:10px;
+	margin-right: 10px;
+	background:transparent;
+	border:none;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;        
+	font-weight:bold;
+	
+}
+/*------------*/
 
 /* navigation bar */
 nav{
@@ -44,14 +90,16 @@ nav{
 }
 nav ul{
 	background: #fff;
-	margin-bottom:10px;
+	margin-bottom:5px;
     padding-left: 5px;
     padding-right: 5px;
 	/*border: solid 3px #7dff7d;*/
 }
 nav li {
   display: inline-block;
-  margin:3px;
+  margin-top:3px;
+  margin-left:3px;
+  margin-right:3px;
   padding:2	px;
 }
 
@@ -102,7 +150,7 @@ div.field, div.actions {
 .content{
 	float:left;
 	background-color: #fff;
-	width:650px;
+	width:675px;
 }
 span.clear{
 	clear:both;
@@ -139,14 +187,34 @@ div.result{
 	min-height: 115px;
 }
 
-div.result .image{
+div .image{
 	float:left;
 	width:115px;
+	height:115px;
 }
 
+div.data{
+	float:right;
+	display:table;
+	height:115px;
+	width:560px;
+}
+div.title{
+	padding-bottom: 5px;
+	display:block;
+	line-height:15px;
+}
+div.description{
+	margin-top:10px;
+}
 div.price{
 	font-weight: ;
 	padding-top:5px;
+	margin-bottom: 0;
+}
+.unfloat br{
+	clear:both;
+	line-height: 0;
 }
 
 /*-----------------------*/
@@ -178,20 +246,44 @@ div.small_result{
 	margin-bottom:0;
 	min-height: 115px;
 }
-div.small_result .small_image{
+div.small_result{
 	width:115px;
 }
-div.small_result .small_title,.small_price{
+div.small_image{
+	width:100px;
+	height:100px;
+}
+div.small_result {
 	text-align:center;
 }
 div.small_price{
 	font-weight: ;
-	padding-top:5px;
+
+}
+div.small_title{
+	font-weight: ;
+	padding-top:r;
 }
 /*----------------*/
 
 
+/*   Search results page   */
+.searchresults{
+	margin-top: ;
+}
+.postsresults{
+	float:left;
+	width:300px;
+	margin-bottom:10px;
+	background: #fff;
+}
+.groupsresults{
+	float:right;
+	width:300px;
+	background: #fff;
+}
 
+/*-------------------------*/
 
 
 .special_link a{
@@ -200,7 +292,7 @@ div.small_price{
 .special_link2{
 	font-size: 90%;
 	padding:0px;
-	margin:0px;
+	margin-top:10px;
 }
 .special_link2 a:hover{
 	text-decoration:underline;

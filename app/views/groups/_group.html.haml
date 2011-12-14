@@ -4,9 +4,12 @@
 	%div.data
 		%div.title
 			=link_to group.name, group_url(group)
+		%br.clear	
 		%div.description
-			=group.description
+			=truncate(group.description,15)
+			%br
 			.special_link=link_to "See items", group_url(group)
+			%br
 		-if group.owner == current_user
 			.special_link2
 				=link_to 'Edit', edit_group_path(group)

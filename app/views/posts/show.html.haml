@@ -21,3 +21,7 @@
 		%h1 Interested? email them:
 	=render :partial => 'shared/email'
 	/=render :partial => 'emails/new'
+	-if @post.user == current_user
+		.special_link2
+			=link_to 'Edit', edit_post_path(@post)
+			=link_to 'Destroy', @post, :confirm => 'Are you sure?', :method => :delete

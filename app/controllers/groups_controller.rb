@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
     @title = "Groups"
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @groups = @user.groups
+      @groups = @user.groups_as_owner
     else 
       @search = Group.search do
         fulltext params[:search]
@@ -40,6 +40,7 @@ class GroupsController < ApplicationController
   
   def create
     @group = current_user.groups_as_owner.build(params[:group])
+    params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten 
     if @group.save
       redirect_to @group
     else

@@ -1,6 +1,6 @@
--unless @public_groups == nil || @groups == nil
+-unless @public_groups_of_interest == nil || @groups == nil
 	-form_for(@user, :html => {:method => :put}) do |f|
-		-@public_groups.each do |group|
+		-@public_groups_of_interest.each do |group|
 			%dt= label_tag "group_checkbox_#{group.id}", group.name
 			%dd= check_box_tag("user[groups_as_member_ids][]", group.id, @groups.include?(group), :id => "group_checkbox_#{group.id}")
 		=f.submit "Add Groups"

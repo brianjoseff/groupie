@@ -6,6 +6,4 @@
 			=link_to random_item.name, post_url(random_item)
 		%div.small_price
 			%p $#{random_item.price}
-		-if random_item.user == current_user
-			=link_to 'Edit', edit_post_path(random_item)
-			=link_to 'Destroy', random_item, :confirm => 'Are you sure?', :method => :delete
+		

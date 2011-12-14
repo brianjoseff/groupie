@@ -5,7 +5,15 @@ class UsersController < ApplicationController
   
   #disparity between group id stored in membership and actual gorup id
   def show
-    @public_groups = Group.public
+    @public_groups_of_interest = Array.new
+    unless @user.school.nil?
+      @search = Group.search do
+        fulltext @user.school
+      end
+      unless @search.results.nil?
+        @public_groups_of_interst << @search.results
+      end
+    end
     @groups_member = @user.groups_as_member
     @groups_as_owner = @user.groups_as_owner
     @groups = @groups_as_owner + @groups_member

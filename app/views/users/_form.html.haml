@@ -9,9 +9,9 @@
 			%dt.field=f.label :avatar
 			%dd.field=f.file_field :avatar
 		%dt.field=f.label :name
-		%dd.field=f.text_field :name
+		%dd.field=f.text_field :name, :value => "Name"
 		%dt.field=f.label :email
-		%dd.field=f.text_field :email
+		%dd.field=f.text_field :email, :value => "Email"
 		-if @user.new_record?
 			%dt.field=f.label :password
 			%dd.field=f.password_field :password

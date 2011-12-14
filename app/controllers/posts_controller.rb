@@ -17,7 +17,8 @@ class PostsController < ApplicationController
       @search = Post.search do
         fulltext params[:search]
       end
-      @posts = @search.results 
+      @posts = @search.results
+      @groups = Group.search {fulltext params[:search]} 
     end
 
 #    @user = current_user

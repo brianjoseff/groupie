@@ -1,0 +1,11 @@
+.content
+	.searchresults
+		.postsresults
+			%h1 Stuff:
+			%p search returned #{@posts.count} posts
+			=render @posts
+		.groupsresults
+			%h1 Groups:
+			%p search returned #{@groups.count} groups
+			=render @groups
+=render :partial => 'shared/side_nav'

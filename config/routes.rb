@@ -7,7 +7,9 @@ Groupie::Application.routes.draw do
   
   resources :users do
     resources :posts
+    resources :groups
   end
+  resources :groups
  # match '/search', :to => 'posts#search', :action => "search"
   resources :emails
   resources :posts do
@@ -17,9 +19,10 @@ Groupie::Application.routes.draw do
   namespace :admin do 
     resources :users
   end
-  resources :groups
   resources :sessions, :only => [:new, :create, :destroy]
   resources :memberships
+  resources :search, :only => [:index]
+  resources :messages, :only => [:new]
   
   match '/signout', :to => 'sessions#destroy'
   match '/signin', :to => 'sessions#new'
