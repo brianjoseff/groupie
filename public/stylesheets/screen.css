@@ -187,22 +187,19 @@ div.result{
 	min-height: 115px;
 }
 
-div .image{
-	float:left;
+div .image{	
 	width:115px;
-	height:115px;
+	max-height:115px;
 }
 
 div.data{
-	float:right;
-	display:table;
-	height:115px;
-	width:560px;
+	max-height:150px;
+	width:100%;
 }
 div.title{
 	padding-bottom: 5px;
 	display:block;
-	line-height:15px;
+	
 }
 div.description{
 	margin-top:10px;

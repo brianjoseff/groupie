@@ -23,6 +23,7 @@ Groupie::Application.routes.draw do
   resources :memberships
   resources :search, :only => [:index]
   resources :messages, :only => [:new]
+  match '/messages', :to => 'messages#new'
   
   match '/signout', :to => 'sessions#destroy'
   match '/signin', :to => 'sessions#new'
