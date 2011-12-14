@@ -1,4 +1,5 @@
 Groupie::Application.routes.draw do
+
   resources :emails
 
   get "memberships/index"
@@ -18,6 +19,9 @@ Groupie::Application.routes.draw do
   
   namespace :admin do 
     resources :users
+  end
+  resources :product_categories do
+    resources :posts
   end
   resources :sessions, :only => [:new, :create, :destroy]
   resources :memberships

@@ -134,19 +134,54 @@ div.field, div.actions {
 }
 /*-----------------------------------------*/
 
-
+/* SIDE BAR  */
+.sidebar{
+	width:160px;
+	height:100%;
+	float:right;
+	padding-left:10px;
+	/*border-left: 3px solid #b9b9b9;*/
+}
 .sidenav{
 	background: #ebebeb;
-	float:right;
 	width:150px;
+	min-height:150px;
 	padding: 5px;
+	margin-bottom:10px;
+	
 }
+
 .sidenav li, a{
 	padding: 5px;
 	text-decoration: none;
 	font-size: 1.1em;
 	color: #696969;
 }
+
+.category_container{
+	
+}
+.categories{
+	width:150px;
+	padding:5px;
+	min-height:150px;
+	
+}
+.categories li, a{
+	padding: 5px;
+	text-decoration: none;
+	font-size: 1.1em;
+	color: #696969;
+}
+div.category-title p{
+	margin-top:10px;
+	width:150px;
+	padding: 5px;
+	color:#696969;
+	font-size: 1.5em;
+	text-weight:bold;
+}
+/*-----------*/
 .content{
 	float:left;
 	background-color: #fff;

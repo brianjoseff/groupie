@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
   #has_many :images
   has_many :emails
   belongs_to :user
+  belongs_to :product_category
   has_many :assignments, :dependent => :destroy
   has_many :groups, :through => :assignments
   has_attached_file :image, :styles => { :thumb => "100x100",
