@@ -1,8 +1,8 @@
 class ChangeDataTypeForEmailUsers < ActiveRecord::Migration
   def self.up
     change_table :emails do |t|
-          t.change :to, :integer
-          t.change :from, :integer
+          t.change :emails, :to, :integer
+          t.change :emails, :from, :integer
     end
   end
 
