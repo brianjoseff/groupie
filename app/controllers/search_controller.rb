@@ -9,4 +9,12 @@ class SearchController < ApplicationController
     end
     @groups = @search.results
   end
+  
+#  def index
+#   if params[:search].present?
+#      @posts = Post.search(params[:query], load: => true)
+#    else
+##      @posts = Post.al
+#    end
+#  end
 end

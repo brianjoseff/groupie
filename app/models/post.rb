@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
   #has_many :images
   has_many :emails
   belongs_to :user
@@ -12,7 +13,7 @@ class Post < ActiveRecord::Base
   searchable do
     text :name, :description
   end
-                          
+                         
   def self.rand_post(group)
     #find_by_id(get_assignment_post_id(assignments))
     z = group.assignments.first(:order => "RANDOM()")

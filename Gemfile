@@ -14,7 +14,8 @@ gem "paperclip", "~> 2.3"
 gem "forgery", "~> 0.3.12"
 gem 'faker'
 gem 'sunspot_rails'
-
+gem 'jquery-rails'
+gem 'tire'
 # Use unicorn as the web server
 # gem 'unicorn'
 
