@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111214084759) do
+ActiveRecord::Schema.define(:version => 20120104014155) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "group_id"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(:version => 20111214084759) do
   add_index "memberships", ["member_id", "group_id"], :name => "index_memberships_on_member_id_and_group_id", :unique => true
   add_index "memberships", ["member_id"], :name => "index_memberships_on_member_id"
 
+  create_table "post_images", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+  end
+
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.boolean  "borrow"
@@ -61,11 +72,8 @@ ActiveRecord::Schema.define(:version => 20111214084759) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
     t.integer  "product_category_id"
+    t.boolean  "premium_mult_group_viz"
   end
 
   create_table "product_categories", :force => true do |t|
@@ -76,10 +84,10 @@ ActiveRecord::Schema.define(:version => 20111214084759) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "encrypted_password",  :limit => 128
-    t.string   "salt",                :limit => 128
-    t.string   "confirmation_token",  :limit => 128
-    t.string   "remember_token",      :limit => 128
+    t.string   "encrypted_password",    :limit => 128
+    t.string   "salt",                  :limit => 128
+    t.string   "confirmation_token",    :limit => 128
+    t.string   "remember_token",        :limit => 128
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
@@ -89,7 +97,11 @@ ActiveRecord::Schema.define(:version => 20111214084759) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.boolean  "admin",                              :default => false
+    t.boolean  "admin",                                :default => false
+    t.string   "last_4_digits"
+    t.string   "stripe_id"
+    t.boolean  "subscribed"
+    t.string   "stripe_customer_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

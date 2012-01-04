@@ -2,7 +2,7 @@
 	.green=link_to image_tag("logo2.png", :alt => "groupie"), current_user ? current_user : root_path
 	.searchbar
 		.search-inner
-			-form_tag '/search', :method => :get do
+			=form_tag '/search', :method => :get do
 				=text_field_tag :search, params[:search], :id => 'searchfield'
 				=submit_tag 'search',:name => nil, :id => 'searchbutton'
 	%nav

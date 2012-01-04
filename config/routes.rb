@@ -1,18 +1,18 @@
 Groupie::Application.routes.draw do
 
   resources :emails
-
+  
   get "memberships/index"
 
   get "memberships/update"
-  
+
   resources :users do
     resources :posts
     resources :groups
   end
-  resources :groups
- # match '/search', :to => 'posts#search', :action => "search"
-  resources :emails
+  
+  resources :groups 
+  
   resources :posts do
     resources :emails
   end
@@ -20,15 +20,17 @@ Groupie::Application.routes.draw do
   namespace :admin do 
     resources :users
   end
+  
   resources :product_categories do
     resources :posts
   end
+  
   resources :sessions, :only => [:new, :create, :destroy]
   resources :memberships
   resources :search, :only => [:index]
   resources :messages, :only => [:new]
-  match '/messages', :to => 'messages#new'
   
+  match '/messages', :to => 'messages#new'
   match '/signout', :to => 'sessions#destroy'
   match '/signin', :to => 'sessions#new'
   match '/signup', :to => 'users#new'

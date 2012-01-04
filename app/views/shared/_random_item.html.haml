@@ -1,9 +1,9 @@
 %div.small_result
 	%div.small_image
-		=link_to image_tag(random_item.image.url(:thumb), :alt => random_item.name), post_url(random_item)
+		=link_to image_tag(random_item.post_images.first.nil?  ? '/assets/post-thumb.png': random_item.post_images.first.image.url(:thumb), :alt => random_item.name), post_path(random_item)
 	%div.small_data
 		%div.small_title
-			=link_to random_item.name, post_url(random_item)
+			=link_to random_item.name, post_path(random_item)
 		%div.small_price
 			%p $#{random_item.price}
 		

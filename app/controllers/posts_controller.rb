@@ -40,7 +40,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @owner = User.find(@post.user_id)
     @email = @post.emails.build
-    
+        
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @post }
@@ -73,7 +73,10 @@ class PostsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @post = @user.posts.build
-    @assigment = Assignment.new
+#     @assigment = Assignment.new
+    #allow up to 5 images to be uploaded
+    #5.times {@post.build_post_image}
+#     post_image = @post.post_images.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }
@@ -84,33 +87,15 @@ class PostsController < ApplicationController
   def edit
     @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
+    @post_images = @post.post_images
   end
 
   # POST /posts
   # POST /posts.xml
   def create
     @user = User.find(params[:user_id])
-    params[:post][:group_ids] ||= []
+#     params[:post][:group_ids] ||= []
     @post = @user.posts.build(params[:post])
-#    @groups = current_user.groups
-#    @post.user_id = current_user.id
-    
-    #for each group that is 'assigned' create an assignment object
-    
-    # group_ids = params[:post][:groups]
-    #     groups.each do |x|
-    #       @assignment = Assignment.new({:post_id=>params[:id], 
-    #                                        :group_id=>x.id})
-    #     end
-    
-    # if groups.assigned?
-    #    @user.groups_as_owner.each do |x|
-    #     for group in groups
-    #    @assignment = Assignment.new({:post_id=>params[:id], 
-    #                                     :group_id=>x.id})
-    #    end
-    #  end
-    #end
     
     if @post.save
       redirect_to @user

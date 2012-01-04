@@ -12,8 +12,8 @@ class Group < ActiveRecord::Base
   
   has_attached_file :photo, :styles => { :thumb => "100x100",
                                          :small => "200x200" },
-                    :path => ":rails_root/public/system/photos/:id/:style/:basename.:extension",
-                    :default_url => "/system/photos/missing/:style.png"
+                    :path => ":rails_root/assets/images/post_images/:id/:style/:basename.:extension",
+                    :default_url => "/assets/missing/:style.png"
                     
   
   def get_random

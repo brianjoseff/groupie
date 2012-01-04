@@ -1,6 +1,6 @@
 %div.result
 	%div.image
-		=link_to image_tag(post.image.url(:thumb), :alt => post.name), post_url(post)
+		=link_to image_tag(post.post_images.empty?  ? '/assets/post-thumb.png': post.post_images.first.image.url(:thumb), :alt => post.name), post_url(post)
 	%div.data
 		%div.title
 			=link_to post.name, post_url(post)

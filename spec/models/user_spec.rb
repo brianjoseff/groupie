@@ -2,19 +2,41 @@ require 'spec_helper'
 
 describe User do
 
+  before(:each) do
+    @attr = {}
+  end
   
-  describe "#get_some_random_items" do 
-    let(:user) { Factory(:user) }
-    let(:group) { user.groups_as_members }
-    it "returns if groups is nil" do
-      user.get_some_random_items(group)
-    end
+  it "should create a new instance given a valid attribute" do
     
-    it "calls for each group rand_by_post and puts it in array" do
+  end
+  
+  it "should require a name" do
+    
+  end
+  
+  it "should require and email address" do |variable|
+    
+  end
+  
+  it "should reject names that are too long" do |variable|
+    
+  end
+  
+  it "should accept valid email addresses" do
+    
+  end
+  
+  it "should reject invalid email addresses" do
+    
+  end
+  
+  it "should reject duplicate email addresses" do
+    
+  end
+  
+  it "should reject email addresses identical up to case" do
+    
+  end
+  
       
-    end
-      
-    context 'if groups parameter is empty'
-    context 'if groups parameter has stuff'
-  end  
 end

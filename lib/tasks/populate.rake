@@ -32,6 +32,13 @@ namespace :db do
                     :user_id => user_id)
     end
     
+    #product_categories
+    ProductCategory.create!(:name => "For Sale")
+    ProductCategory.create!(:name => "Wanted")
+    ProductCategory.create!(:name => "Jobs/Internships")
+    ProductCategory.create!(:name => "Free Stuff")
+    ProductCategory.create!(:name => "Housing")
+    
     #posts
     40.times do |x|
       name = Forgery(:LoremIpsum).word(:random => true)
@@ -68,12 +75,7 @@ namespace :db do
                          :group_id => group_id)
     end
     
-    #product_categories
-    ProductCategory.create!(:name => "For Sale")
-    ProductCategory.create!(:name => "Wanted")
-    ProductCategory.create!(:name => "Jobs/Internships")
-    ProductCategory.create!(:name => "Free Stuff")
-    ProductCategory.create!(:name => "Housing")
+    
   end
 end 
     

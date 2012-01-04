@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :get_user, :except => [:index, :create, :new]
   before_filter :authorize, :except => [:create, :new, :show]
   
+  
   #disparity between group id stored in membership and actual gorup id
   def show
     @public_groups_of_interest = Array.new
@@ -33,6 +34,11 @@ class UsersController < ApplicationController
       @title = "Edit user"
       render 'edit'
     end
+    rescue Stripe::InvalidRequestError => e
+      logger.error e.message
+      @user.errors.add :base, "There was a problem with your credit card"
+      @user.stripe_token = nil
+      render :action => :new
   end
   
   def new
@@ -52,6 +58,11 @@ class UsersController < ApplicationController
       #@title = "Sign up"
       render 'new'
     end
+    rescue Stripe::InvalidRequestError => e
+      logger.error e.message
+      @user.errors.add :base, "There was a problem with your credit card"
+      @user.stripe_token = nil
+      render :action => :new
   end
   
   private

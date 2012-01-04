@@ -40,7 +40,7 @@ class GroupsController < ApplicationController
   
   def create
     @group = current_user.groups_as_owner.build(params[:group])
-    params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten 
+      params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten 
     if @group.save
       redirect_to @group
     else

@@ -1,8 +1,5 @@
 .content
-	-if @post.image
-		=image_tag(@post.image.url(:small))
-	-else
-		=image_tag(@post.image.default_url)
+	=image_tag(@post.post_images.first.nil?  ? '/assets/post-thumb.png': @post.post_images.first.image.url(:thumb), :alt => @post.name)
 	%p
 		%b Name:
 		=@post.name
