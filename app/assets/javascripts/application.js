@@ -13,4 +13,9 @@ function add_fields(link, association, content) {
   });
 }
 
+$(function() {
+  $('#premium_group').click(function() {
+    $('#credit_fields').toggle();
+  });
+});
 

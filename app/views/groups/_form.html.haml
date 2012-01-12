@@ -8,7 +8,9 @@
 		%dt.field=f.label :name
 		%dd.field=f.text_field :name
 		%dt.field=f.label :private, "private?"
-		%dd.field=f.check_box :private		
+		%dd.field=f.check_box :private
+		%dt.field=f.label :group_password, "set the entrance password"
+		%dt.field=f.text_field :group_password		
 		%dt.field=f.label :description
 		%dd.field=f.text_area :description
 		.action=f.submit "Create"

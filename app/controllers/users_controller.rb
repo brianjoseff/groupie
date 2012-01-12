@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @groups_as_owner = @user.groups_as_owner
     @groups = @groups_as_owner + @groups_member
     @random_items = @user.get_randos(@groups)
+    @categories = ProductCategory.all
   end
   
   def edit

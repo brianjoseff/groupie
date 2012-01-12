@@ -1,4 +1,5 @@
 class Group < ActiveRecord::Base
+  has_many :post_images, :as => :imageable, :dependent => :destroy
   has_many :memberships
   has_many :members,    :through => :memberships, :source => :member, :foreign_key => :member_id
   belongs_to :owner,    :class_name => "User", :foreign_key => :user_id

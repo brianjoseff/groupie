@@ -21,9 +21,7 @@ Groupie::Application.routes.draw do
     resources :users
   end
   
-  resources :product_categories do
-    resources :posts
-  end
+  resources :product_categories, :subcategories
   
   resources :sessions, :only => [:new, :create, :destroy]
   resources :memberships

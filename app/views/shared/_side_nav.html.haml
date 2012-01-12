@@ -1,16 +1,13 @@
 .sidebar
-	%ul.sidenav
-		%li= link_to "my items", user_posts_path(current_user)
-		%li= link_to "my groups", user_groups_path(current_user)
-		%li.pink= link_to "post something", new_user_post_path(current_user)
-		%li= link_to "account details", edit_user_path(current_user)
-		%li= link_to "create group", new_user_group_path(current_user)
-	/ .category-container
-	/ 		%div.category-title
-	/ 			%p Categories
-	/ 		%ul.categories
-	/ 			%li= link_to "For Sale", product_category_path(@forsale)
-	/ 			%li= link_to "Wanted", product_category_path(@free)
-	/ 			%li= link_to "Jobs/Internships", product_category_path(@jobs)
-	/ 			%li= link_to "Free Stuff", product_category_path(@free)
-	/ 			%li= link_to "Housing", product_category_path(@housing)
+  %ul.sidenav
+    %li= link_to "my items", user_posts_path(current_user)
+    %li= link_to "my groups", user_groups_path(current_user)
+    %li.pink= link_to "post something", new_user_post_path(current_user)
+    %li= link_to "account details", edit_user_path(current_user)
+    %li= link_to "create group", new_user_group_path(current_user)
+  .category-container
+    %div.category-title
+      %p Categories
+    %ul.categories
+      =get_categories.each do |category|
+        %li= link_to "#{category.name}", product_category_path(category)
