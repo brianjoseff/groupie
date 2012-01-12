@@ -12,10 +12,24 @@ function add_fields(link, association, content) {
     before: content.replace(regexp, new_id)
   });
 }
+function toggleBox() {
+  jQuery("#premium_group .input:checkbox").click(function() { 
+  if (jQuery(this).attr('checked') == "checked") {
+    jQuery("#credit_fields").show("fast");
+    }else{
+      jQuery("#credit_fields").hide("fast");
+    };
+  });
+}
 
 $(function() {
   $('#premium_group').click(function() {
     $('#credit_fields').toggle();
   });
+});
+
+$(document).ready(function() {
+	jQuery('body').addClass('jsenabled');
+	toggleBox();
 });
 

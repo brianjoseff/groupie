@@ -34,9 +34,11 @@
 		%dd#premium_group=f.check_box :premium_mult_group_viz		
 		%dt.field=f.label :description
 		%dd.field=f.text_area :description
-		=f.fields_for :assignments do |ff|
-			=ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0','1'
-			=ff.label :_destroy, ff.object.group.name
-			=ff.hidden_field :group_id
-		=f.link_to_add "Add credit card", :user
-	.action=f.submit "Save Post"
+        =f.fields_for :user do |u|
+          =render "user_fields", :f => u
+	    =f.fields_for :assignments do |ff|
+	      =ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0','1'
+	   	  =ff.label :_destroy, ff.object.group.name
+	   	  =ff.hidden_field :group_id
+	   =f.link_to_add "Add credit card", :user
+	  =f.submit "Save Post"

@@ -10,6 +10,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :post_images, :reject_if => lambda { |t| t[:post_image].nil?}, :allow_destroy => true
   accepts_nested_attributes_for :assignments, :allow_destroy => true
   accepts_nested_attributes_for :user
+  attr_accessor :stripe_customer_token
  
   searchable do
     text :name, :description

@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :posts
   
 #  before_save :update_stripe
-  attr_accessor :stripe_card_token
+  attr_accessor :stripe_customer_token
   
   def update_stripe
     if stripe_token.present?

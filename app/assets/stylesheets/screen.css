@@ -26,6 +26,9 @@ header img, a{
 	float:left;
 	display:block;
 }
+.hidden, #credit_fields{
+	display:none;
+}
 
 section{
 	clear:both;
