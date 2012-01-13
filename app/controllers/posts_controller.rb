@@ -93,14 +93,14 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
   def create
-    @user = User.find(params[:user_id])
+    @user = current_user
 #     params[:post][:group_ids] ||= []
     @post = @user.posts.build(params[:post])
     
     if @post.save
       redirect_to @user
     else
-      redirect_to new_user_post_path(current_user)
+      redirect_to new_user_post_path(current_user), :notice => "NOOOOOOOOOOOOO"
     end
   end
 

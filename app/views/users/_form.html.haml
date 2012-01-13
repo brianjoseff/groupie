@@ -4,7 +4,7 @@
 	%h1 Edit
 =form_for(@user) do |f|
 	=render "shared/error_messages", :target => @user
-	=f.hidden_field :stripe_card_token
+	=f.hidden_field :stripe_customer_token
 	%dl
 		-if signed_in?
 			%dt.field=f.label :avatar
@@ -16,7 +16,7 @@
 		-if @user.new_record?
 			%dt.field=f.label :password
 			%dd.field=f.password_field :password
-		-if @user.stripe_card_token.present?
+		-if @user.stripe_customer_token.present?
 			%p Credit card has been provided.
 		-else
 			%div.field

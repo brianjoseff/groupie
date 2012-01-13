@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :stripe_token, :last_4_digits
+  attr_accessible :name, :email, :password, :password_confirmation, :last_4_digits
     
   include Clearance::User
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+(edu)+\z/i
@@ -14,50 +14,9 @@ class User < ActiveRecord::Base
   has_many :groups_as_member, :through => :memberships, :source => :group, :class_name => "Group", :foreign_key => :user_id
   has_many :groups_as_owner, :class_name => "Group"
   has_many :posts
-  accepts_nested_attributes_for :posts
-  
-#  before_save :update_stripe
+  accepts_nested_attributes_for :posts  
+  before_update :update_stripe
   attr_accessor :stripe_customer_token
-  
-  def update_stripe
-    if stripe_token.present?
-      if stripe_id.nil?
-        customer = Stripe::Customer.create(
-          :description => email,
-          :card => stripe_token
-        )
-        self.last_4_digits = customer.active_card.last4
-        response = customer.update_subscription({:plan => "premium"})
-      else
-        customer = Stripe::Customer.retrieve(stripe_id)
-        customer.card = stripe_token
-        customer.save
-        self.last_4_digits = customer.active_card.last4
-      end
-
-      self.stripe_id = customer.id
-      self.stripe_token = nil
-    elsif last_4_digits_changed?
-      self.last_4_digits = last_4_digits_was
-    end
-  end
-
-#   def get_some_random_items(groups)
-#     random_items = Array.new
-#     return nil unless groups.empty? == false
-#     groups.each do |group|
-#       group_posts = Post.find(:all, :conditions => ['group_id = ? ', group.id], :joins => [:assignments])
-#       x = group_posts.sample
-#       if x.nil?
-#         return
-#       end
-#       random_items << x
-#       if random_items.size == 5
-#         return random_items
-#       end
-#     end
-#     return random_items
-#   end
   
   def get_randos(groups)
     if groups == nil
@@ -74,27 +33,41 @@ class User < ActiveRecord::Base
       return x
     end
   end
-#  def get_some_random_items(groups)
-#    random_items = Array.new
-#    group_posts = Post.find(:all, :conditions => ['group.id = ? ', group.id], :joins => [:assignments])
-#    return nil unless groups.empty? == false
-#    while random_items.length < 5 do
-#      x = groups.sample
-#      if x != nil
-#        z = x.get_random
-#        y = Post.find(z.id)
-#        if y.nil?
-#          return
-#        end
-##      end
-#      random_items << y
-#      if random_items.size == 5
-#        return random_items
-#      end
-#    end
-#    return random_items
-#  end
-      
+
+  def update_stripe
+    if stripe_customer_token.present?
+      if stripe_id.nil?
+        customer = Stripe::Customer.create(
+          :description => email,
+          :card => stripe_card_token
+        )
+#         self.last_4_digits = customer.active_card.last4
+#         response = customer.update_subscription({:plan => "premium"})
+      else
+        customer = Stripe::Customer.retrieve(stripe_id)
+        customer.card = stripe_customer_token
+        customer.save
+#         self.last_4_digits = customer.active_card.last4
+      end
+
+      self.stripe_id = customer.id
+      self.stripe_customer_token = nil
+#     elsif last_4_digits_changed?
+#       self.last_4_digits = last_4_digits_was
+#     end
+    end
+  end
+  
+  def payment(user)
+    if valid?
+      customer = Stripe::Customer.retrieve(user.stripe_id)
+      Stripe::Charge.create(:amount => 500, :currency => "usd", :customer => customer.id)
+    end
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
+  end
     
   
 private

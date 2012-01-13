@@ -30,6 +30,14 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(params[:user])
+      if params[:stripe_customer_token]
+        @user.update_stripe
+        if @user.payment(@user)
+          redirect_to @user, :notice => "Thanks dawg"
+        else
+          render :new
+        end
+      end
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
       @title = "Edit user"
@@ -72,6 +80,7 @@ class UsersController < ApplicationController
   end
   def authorize
     unless current_user == @user
+      deny_access
       redirect_to current_user, :flash => {:notice => "Sorry, you can only view your own stuff"}
     end
   end

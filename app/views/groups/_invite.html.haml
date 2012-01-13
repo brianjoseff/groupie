@@ -1,0 +1,5 @@
+=form_tag "/invites",  :method => :get do
+	=hidden_field_tag :from, current_user.id
+	=hidden_field_tag :group_id, group.id
+	=text_area_tag :content, params[:content], :size => "25x6"
+	=submit_tag "invite users"
