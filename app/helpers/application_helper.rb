@@ -21,7 +21,5 @@ module ApplicationHelper
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")")
   end
   
-  def get_categories
-    @categories = ProductCategory.all
-  end
+
 end

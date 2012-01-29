@@ -1,16 +1,19 @@
 %header
-	.green=link_to image_tag("logo2.png", :alt => "groupie"), current_user ? current_user : root_path
-	.searchbar
-		.search-inner
-			=form_tag '/search', :method => :get do
-				=text_field_tag :search, params[:search], :id => 'searchfield'
-				=submit_tag 'search',:name => nil, :id => 'searchbutton'
-	%nav
-		%ul		
-			%li= link_to "about", about_path
-			-if signed_in?
-				%li.pink= link_to "post",  new_user_post_path(current_user)
-				%li= link_to "home", user_path(current_user)
-				%li= link_to "sign out", signout_path
-			-else
-				%li= link_to "sign in", signin_path
+  .green=link_to image_tag("logo2.png", :alt => "groupie"), current_user ? current_user : root_path
+  .searchbar
+    .search-inner
+      / =form_tag '/search', :method => :get do
+      /   =text_field_tag :q, params[:q], :id => 'searchfield'
+      /   =submit_tag 'search',:name => nil, :id => 'searchbutton'
+      =search_form_for @q, :url => { :controller => "search", :action => "index" }do |f|
+        =f.text_field :name_cont
+        =f.submit 'search', :id => 'searchbutton'
+  %nav
+    %ul		
+      %li= link_to "about", about_path
+      -if signed_in?
+        %li.pink= link_to "post",  new_user_post_path(current_user)
+        %li= link_to "home", user_path(current_user)
+        %li= link_to "sign out", signout_path
+      -else
+        %li= link_to "sign in", signin_path

@@ -12,9 +12,10 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :user
   attr_accessor :stripe_customer_token
  
-  searchable do
-    text :name, :description
-  end
+  # sunspot/solr has been breaking things, so this is commented out
+  # searchable do
+  #     text :name, :description
+  #   end
                          
   def self.rand_post(group)
     #find_by_id(get_assignment_post_id(assignments))

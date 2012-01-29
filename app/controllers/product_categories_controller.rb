@@ -14,7 +14,7 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories/1.xml
   def show
     @product_category = ProductCategory.find(params[:id])
-
+    @posts = Post.where(:product_category_id => @product_category.id)
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product_category }

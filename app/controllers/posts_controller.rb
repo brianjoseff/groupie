@@ -14,19 +14,12 @@ class PostsController < ApplicationController
       @user = User.find(params[:user_id])
       @posts = @user.posts
     else
-      @search = Post.search do
-        fulltext params[:search]
-      end
-      @posts = @search.results
-      @groups = Group.search {fulltext params[:search]} 
+#       @q = Post.search(params[:q])
+#       @posts = @q.result
+#       @q = Group.search(params[:q])
+#       @groups = @q.result
+#      redirect_to search_path
     end
-
-#    @user = current_user
-#    @user_posts = @user.posts
-#    @search = Post.search do
-#      fulltext params[:search]
-#    end
-#    @posts = @search.results
 
     respond_to do |format|
       format.html # index.html.erb
@@ -72,7 +65,8 @@ class PostsController < ApplicationController
   # GET /posts/new.xml
   def new
     @user = User.find(params[:user_id])
-    @post = @user.posts.build
+   #  @post = @user.posts.build
+   @post = Post.new
 #     @assigment = Assignment.new
     #allow up to 5 images to be uploaded
     #5.times {@post.build_post_image}

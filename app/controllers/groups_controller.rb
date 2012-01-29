@@ -12,10 +12,11 @@ class GroupsController < ApplicationController
       @user = User.find(params[:user_id])
       @groups = @user.groups_as_owner
     else 
-      @search = Group.search do
-        fulltext params[:search]
-      end
-      @groups = @search.results
+#       @q = Post.search(params[:q])
+#       @posts = @q.result
+#       @q = Group.search(params[:q])
+#       @groups = @q.result
+#      redirect_to search_path
     end
   end
   
@@ -30,16 +31,25 @@ class GroupsController < ApplicationController
   #to just check their input against what code is on record for the group
   # use 'update_attribute()' or make a new controller action
   def update
-    if params[:group_password] == @group.group_password
+    if @group.group_password
+      if params[:the_password] == @group.group_password
+        params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten
+        #special method update_attribute only updates explicitly stated attribute
+        if @group.update_attribute(params[:group][:member_ids])
+          redirect_to @group
+          flash[:success] = "group updated"
+        end
+      else
+        flash[:error] = "you need the secret password to join this group" 
+        redirect_to @group
+      end
+    else
       params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten
       #special method update_attribute only updates explicitly stated attribute
       if @group.update_attribute(params[:group][:member_ids])
         redirect_to @group
         flash[:success] = "group updated"
       end
-    else
-      flash[:error] = "you need the secret password to join this group" 
-      redirect_to @group
     end
   end
   

@@ -1,6 +1,7 @@
 .content
-	-form_tag groups_path, :method => :get do
+	=form_tag groups_path, :method => :get do
 		=text_field_tag :search, params[:search]
 		=submit_tag "search", :name => nil
-		=render @groups
+	%h1 big dog's groups
+	=render @groups
 =render :partial => 'shared/side_nav'

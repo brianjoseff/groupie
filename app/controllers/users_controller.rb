@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => :create
-  before_filter :get_user, :except => [:index, :create, :new]
+  before_filter :get_user, :except => [ :create, :new]
   before_filter :authorize, :except => [:create, :new, :show]
   
   

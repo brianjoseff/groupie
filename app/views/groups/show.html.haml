@@ -1,22 +1,36 @@
 .content
-	%div.show
-		%div.image
-			=link_to image_tag(@group.photo.url(:thumb), :alt => @group.name), group_url(@group)
-		%div.data
-			%h1= @group.name
-			%p= @group.description
-			-if current_user == @user
-				=link_to "Edit", edit_group_path(@group)
-			%br
-			%br/
-			=render :partial => "join_form"
-	%br
-	%br/
-	= render :partial => 'invite', :locals => {:group => @group}
-	%h2 items
-	%table
-		=render @group.posts
-	%h2 members
-	%table
-		=render @group.members
+  %div.show
+    %div.image
+      =link_to image_tag(@group.photo.url(:thumb), :alt => @group.name), group_url(@group)
+    %div.data
+    %h1= @group.name
+    %p= @group.description
+    -if current_user == @user
+      =link_to "Edit", edit_group_path(@group)
+    %br
+    %br/
+    -if @group.group_password && @group.owner != current_user
+      / =form_for @group do |f|
+      /   =hidden_field_tag('group[member_ids][]', current_user.id)
+      /   =f.label "this is the group password"
+      /   =f.label "password"
+      /   =f.text_field :group_password
+      /   =f.submit "join"
+      =form_for @group do |f|
+        =hidden_field_tag('group[member_ids][]', current_user.id)
+        =f.label "password"
+        =f.text_field :the_password
+        =f.submit "join"
+    -else
+      =render :partial => "join_form"
+    %br
+    %br/
+    -if @group.owner == current_user
+      = render :partial => 'invite', :locals => {:group => @group}
+    %h2 items
+    %table
+      =render @group.posts
+    %h2 members
+    %table
+      =render @group.members
 =render :partial => 'shared/side_nav'

@@ -10,10 +10,9 @@ gem 'yaml_db'
 gem 'sqlite3'
 gem 'clearance'
 gem "haml"
-gem "paperclip", "~> 2.3"
+gem "paperclip"
 gem "forgery", "~> 0.3.12"
 gem 'faker'
-gem 'sunspot_rails'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'tire'
 gem 'json'
@@ -21,7 +20,8 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'stripe'
 gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
 gem 'aws-s3'
-
+gem 'aws-sdk'
+gem 'ransack'
 
 # Use unicorn as the web server
 # gem 'unicorn'

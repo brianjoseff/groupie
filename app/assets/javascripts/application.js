@@ -21,12 +21,18 @@ function toggleBox() {
     };
   });
 }
-
-$(function() {
-  $('#premium_group').click(function() {
-    $('#credit_fields').toggle();
-  });
-});
+// function passCheck(password){
+// 	jQuery("#the_password .input:text_field").submit(function(){
+// 	if (jQuery(this).attr('the_password')==password) {
+// 		jQuery("")
+// 	};
+// 	})
+// }
+// $(function() {
+//   $('#premium_group').click(function() {
+//     $('#credit_fields').toggle();
+//   });
+// });
 
 $(document).ready(function() {
 	jQuery('body').addClass('jsenabled');
