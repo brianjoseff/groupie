@@ -5,9 +5,11 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'pg'
+
+
 gem 'yaml_db'
 #gem 'thinking-sphinx', '2.0.5'
-gem 'sqlite3'
 gem 'clearance'
 gem "haml"
 gem "paperclip"
