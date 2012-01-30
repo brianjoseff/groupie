@@ -16,16 +16,6 @@ class Post < ActiveRecord::Base
   # searchable do
   #     text :name, :description
   #   end
-                         
-  def self.rand_post(group)
-    #find_by_id(get_assignment_post_id(assignments))
-    z = group.assignments.first(:order => "RANDOM()")
-    if z.nil?
-      return nil
-    end
-    find(z.post_id)
-    #assignments.offset(rand(assignments.count)).first
-  end
   
   def post_image_attributes=(post_image_attributes)
     post_image_attributes.each do |attributes|
