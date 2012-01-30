@@ -6,7 +6,7 @@ gem 'rails', '3.1.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'postgres-pr'
-
+gem 'pg'
 
 gem 'yaml_db'
 #gem 'thinking-sphinx', '2.0.5'
