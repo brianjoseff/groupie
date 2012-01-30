@@ -22,6 +22,7 @@ gem "nested_form", :git => "git://github.com/ryanb/nested_form.git"
 gem 'aws-s3'
 gem 'aws-sdk'
 gem 'ransack'
+gem 'heroku'
 
 # Use unicorn as the web server
 # gem 'unicorn'
