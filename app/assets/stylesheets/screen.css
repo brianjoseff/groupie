@@ -248,7 +248,6 @@ div.description{
 	margin-top:10px;
 }
 div.price{
-	font-weight: ;
 	padding-top:5px;
 	margin-bottom: 0;
 }
@@ -297,11 +296,9 @@ div.small_result {
 	text-align:center;
 }
 div.small_price{
-	font-weight: ;
 
 }
 div.small_title{
-	font-weight: ;
 	padding-top:r;
 }
 /*----------------*/
@@ -309,7 +306,7 @@ div.small_title{
 
 /*   Search results page   */
 .searchresults{
-	margin-top: ;
+
 }
 .postsresults{
 	float:left;
