@@ -21,7 +21,7 @@
 
 =form_for( setup_post(@post,current_user), :html => { :multipart => true}) do |f|
   %dl	
-    =f.fields_for :post_images_attributes do |ff|
+    =f.fields_for :post_images do |ff|
       =ff.file_field :image
     /link below requires "nested_form_for"
     /=f.link_to_add "Add an image", :post_images

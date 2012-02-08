@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_many :assignments, :dependent => :destroy
   has_many :groups, :through => :assignments
  
-  accepts_nested_attributes_for :post_images, :reject_if => lambda { |t| t[:post_image].nil?}, :allow_destroy => true
+  accepts_nested_attributes_for :post_images#, :reject_if => lambda { |t| t[:post_image].nil?}, :allow_destroy => true
   accepts_nested_attributes_for :assignments, :allow_destroy => true
   accepts_nested_attributes_for :user
   attr_accessor :stripe_customer_token
@@ -17,11 +17,11 @@ class Post < ActiveRecord::Base
   #     text :name, :description
   #   end
   
-  def post_images_attributes=(post_image_attributes)
-    post_image_attributes.each do |attributes|
-      post_images.build(attributes)
-    end
-  end
+  # def post_images_attributes=(post_image_attributes)
+  #     post_image_attributes.each do |attributes|
+  #       post_images.build(attributes)
+  #     end
+  #   end
   
   def get_assignment_post_id(assignments)
     return assignments.first(:order => "RANDOM()").post_id
