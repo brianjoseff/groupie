@@ -21,7 +21,7 @@
 	%table
 		=render @user.groups_as_owner
 	-if current_user == @user
-		%p.special_link=link_to "search groups", user_groups_path(current_user) 
+		%p.special_link=link_to "search groups", groups_path 
 		%h2 you are a member of:
 	-else
 		%h2 #{@user.name} is a member of:

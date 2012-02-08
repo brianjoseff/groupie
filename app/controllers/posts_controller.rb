@@ -66,7 +66,8 @@ class PostsController < ApplicationController
   def new
     @user = User.find(params[:user_id])
    #  @post = @user.posts.build
-   @post = Post.new
+    @post = Post.new
+
 #     @assigment = Assignment.new
     #allow up to 5 images to be uploaded
     #5.times {@post.build_post_image}
@@ -88,10 +89,16 @@ class PostsController < ApplicationController
   # POST /posts.xml
   def create
     @user = current_user
-#     params[:post][:group_ids] ||= []
     @post = @user.posts.build(params[:post])
     
     if @post.save
+      @groups = @post.groups
+      for group in @groups do
+        members = group.members
+        for member in members do
+          NewPostMailer.new_post(@user, @post, @post.product_category.name, member, group).deliver
+        end
+      end
       redirect_to @user
     else
       redirect_to new_user_post_path(current_user), :notice => "NOOOOOOOOOOOOO"

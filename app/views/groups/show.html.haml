@@ -16,11 +16,15 @@
       /   =f.label "password"
       /   =f.text_field :group_password
       /   =f.submit "join"
-      =form_for @group do |f|
-        =hidden_field_tag('group[member_ids][]', current_user.id)
-        =f.label "password"
-        =f.text_field :the_password
-        =f.submit "join"
+      -if @group.members.include?(current_user)
+        =render 'leave'        
+      -else
+        =form_for :group, :url => "/private" do
+          =hidden_field_tag(:id, @group.id)
+          =hidden_field_tag('group[member_ids][]', current_user.id)
+          =text_field_tag :code, params[:code]
+          =submit_tag 'Join Group',:name => nil
+
     -else
       =render :partial => "join_form"
     %br

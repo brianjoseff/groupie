@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120108010201) do
+ActiveRecord::Schema.define(:version => 20120204020614) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "group_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120108010201) do
     t.datetime "photo_updated_at"
     t.integer  "user_id"
     t.string   "group_password"
+    t.string   "question"
   end
 
   create_table "memberships", :force => true do |t|

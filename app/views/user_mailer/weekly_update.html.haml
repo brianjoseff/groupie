@@ -1,0 +1,9 @@
+%p Hello #{@user.name}
+
+-if @posts.empty?
+  %p no new posts
+  
+%p these are the new posts for this week
+
+-@posts.each do |post|
+  =render post

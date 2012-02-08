@@ -14,7 +14,6 @@ group :production do
 end
 
 gem 'yaml_db'
-#gem 'thinking-sphinx', '2.0.5'
 gem 'clearance'
 gem "haml"
 gem "paperclip"
@@ -30,6 +29,7 @@ gem 'aws-s3'
 gem 'aws-sdk'
 gem 'ransack'
 gem 'heroku'
+gem 'whenever', :require => false
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -45,10 +45,6 @@ group :assets do
   gem 'uglifier'
 end
 
-
-group :development do
- gem 'sunspot_solr'
-end
 
 gem "rspec-rails", :group => [:test, :development]
 group :test do

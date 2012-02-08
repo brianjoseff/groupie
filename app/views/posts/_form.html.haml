@@ -20,15 +20,15 @@
 / 	.action=f.submit "Save Post"
 
 =form_for( setup_post(@post,current_user), :html => { :multipart => true}) do |f|
-  /=hidden_field_tag 'user_id', @user.id
-  
   %dl	
-    =f.fields_for :post_images do |ff|
+    =f.fields_for :post_images_attributes do |ff|
       =ff.file_field :image
     /link below requires "nested_form_for"
     /=f.link_to_add "Add an image", :post_images
     %dt.field=f.label :name
     %dd.field=f.text_field :name
+    %dt.field=f.label :product_category
+    %dd.field=f.collection_select( :product_category_id, ProductCategory.all, :id, :name)
     %dt.field=f.label :borrow, "borrow?"
     %dd.field=f.check_box :borrow
     %dt.field=f.label :price
@@ -43,4 +43,4 @@
       =ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0','1'
       =ff.label :_destroy, ff.object.group.name
       =ff.hidden_field :group_id
-    .action=f.submit "Save Post"
+  .action=f.submit "Save Post"

@@ -23,4 +23,11 @@ class Group < ActiveRecord::Base
 #    member_groups.sort_by{rand}.slice(0,5)
     assignments.sort_by{rand}.slice(0,5)
   end
+  
+  class << self
+    def check(code, group_id)
+      group = find_by_id(group_id)
+      group.group_password == code ? group : nil
+    end
+  end
 end

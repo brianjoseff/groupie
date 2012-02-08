@@ -1,0 +1,1 @@
+Group.create!(:name => "unspeakable horrors", :private => true, :description => "Oh dear god, my eyes! my Eyes! Give me that fork! ARRARRARGHGHGHGHHG!! *splat* ", :group_password => "000000")

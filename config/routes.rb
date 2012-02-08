@@ -28,6 +28,7 @@ Groupie::Application.routes.draw do
   resources :search, :only => [:index]
   resources :messages, :only => [:new]
   
+  match '/private', :to => 'groups#private'
   match '/search', :to => 'search#index'
   match '/invites', :to => 'invites#new'
   match '/messages', :to => 'messages#new'

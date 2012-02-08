@@ -68,7 +68,18 @@ class User < ActiveRecord::Base
     errors.add :base, "There was a problem with your credit card."
     false
   end
-    
+  
+  def self.weekly_update
+    @users = User.all
+    @posts = Array.new
+    @users.each do |user|
+      @groups = user.groups_as_member
+      @groups.each do |group|
+        @posts.concat(group.posts.where(:created_at => Time.now.beginning_of_week..Time.now.end_of_week))
+      end
+      UserMailer.weekly_update(@posts, user).deliver
+    end
+  end
   
 private
   def has_image?

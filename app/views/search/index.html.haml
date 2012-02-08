@@ -2,10 +2,10 @@
 	.searchresults
 		.postsresults
 			%h1 Stuff:
-			%p search returned #{@posts.count} posts
+			%p search returned #{pluralize(@post_count, 'post')}
 			=render @posts
 		.groupsresults
 			%h1 Groups:
-			%p search returned #{@groups.count} groups
+			%p search returned #{pluralize(@group_count, 'group')}
 			=render @groups
 =render :partial => 'shared/side_nav'

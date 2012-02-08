@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
   #     text :name, :description
   #   end
   
-  def post_image_attributes=(post_image_attributes)
+  def post_images_attributes=(post_image_attributes)
     post_image_attributes.each do |attributes|
       post_images.build(attributes)
     end

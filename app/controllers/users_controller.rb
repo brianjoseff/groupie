@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     
     #integrate with 'clearance' gem
     if @user.save
-      GroupMailer.weekly_newsletter(@user).deliver
+      UserMailer.welcome_mail(@user).deliver
       sign_in @user
       redirect_to @user, :success => "Welcome to groupie"
     else

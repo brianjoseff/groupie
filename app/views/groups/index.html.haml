@@ -1,7 +1,7 @@
 .content
-	=form_tag groups_path, :method => :get do
-		=text_field_tag :search, params[:search]
-		=submit_tag "search", :name => nil
-	%h1 big dog's groups
-	=render @groups
+  =search_form_for @q, :url => { :controller => "search", :action => "index" }do |f|
+    =f.text_field :name_cont
+    =f.submit 'search', :id => 'searchbutton'
+  %h1 big dog's groups
+  =render @groups
 =render :partial => 'shared/side_nav'
