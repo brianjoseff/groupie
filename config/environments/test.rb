@@ -39,4 +39,6 @@ Groupie::Application.configure do
 
   # This config option was shown in the episode but is actually not used, so don't bother adding it.
   # config.assets.allow_debugging = true
+  
+  config.action_mailer.delivery_method = :ses
 end

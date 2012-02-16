@@ -40,6 +40,7 @@ class GroupsController < ApplicationController
   
   def new
     @group = Group.new
+    @group.post_images.build
   end
   
   def create
@@ -47,6 +48,7 @@ class GroupsController < ApplicationController
       params[:group][:member_ids] = (params[:group][:member_ids] << @group.member_ids).flatten 
     if @group.save
       redirect_to @group
+      flash[:success] = "Invite users by pasting emails into the field below"
     else
       redirect_to user_show(current_user)
     end

@@ -30,6 +30,8 @@ gem 'aws-sdk'
 gem 'ransack'
 gem 'heroku'
 gem 'whenever', :require => false
+gem 'will_paginate'
+gem 'aws-ses', :require => 'aws/ses'
 
 # Use unicorn as the web server
 # gem 'unicorn'

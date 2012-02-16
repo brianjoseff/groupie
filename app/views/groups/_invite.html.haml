@@ -1,5 +1,8 @@
 =form_tag "/invites",  :method => :get do
-	=hidden_field_tag :from, current_user.id
-	=hidden_field_tag :group_id, group.id
-	=text_area_tag :content, params[:content], :size => "25x6"
-	=submit_tag "invite users"
+  =hidden_field_tag :from, current_user.id
+  =hidden_field_tag :group_id, group.id
+  %p.area
+    %span.area
+      / =label_tag "paste emails here, even straight out of mail"
+      =text_area_tag :content, params[:content], :size => "25x6"
+  =submit_tag "invite users"

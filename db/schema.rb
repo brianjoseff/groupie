@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120204020614) do
+ActiveRecord::Schema.define(:version => 20120215160705) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "group_id"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(:version => 20120204020614) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assignments", ["group_id"], :name => "index_assignments_on_group_id"
+  add_index "assignments", ["post_id"], :name => "index_assignments_on_post_id"
 
   create_table "emails", :force => true do |t|
     t.string   "subject"

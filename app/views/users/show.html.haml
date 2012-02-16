@@ -1,27 +1,17 @@
-.content	
-	%div.show
-		%div.image
-			=link_to image_tag(@user.avatar.url(:medium), :alt => @user.name), user_url(@user)
-		%div.data
-			%h1= @user.name
-			%p 4 digits: #{@user.last_4_digits}
-			%p email: #{@user.email}
-			%p school: #{@user.school}
-			-if current_user == @user
-				=link_to "Edit", edit_user_path(@user)
+.content
 	%h2 5 random items:
 	%div.small_post
 		-unless @random_items.nil?
-			=render :partial => "/shared/random_item", :collection => @random_items
-	-if current_user == @user
-		.special_link=link_to "create a group", new_user_group_path(current_user)
+			=render :partial => "/shared/random_item", :collection => @random_items	 
+	-if current_user == @user		
 		%h2 your groups:
+		.special_link=link_to "create a group", new_user_group_path(current_user)
+		%br/
 	-else
 		%h2 #{@user.name} groups
 	%table
 		=render @user.groups_as_owner
 	-if current_user == @user
-		%p.special_link=link_to "search groups", groups_path 
 		%h2 you are a member of:
 	-else
 		%h2 #{@user.name} is a member of:

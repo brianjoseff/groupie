@@ -3,14 +3,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   before_filter :require_login, :get_categories, :get_search_object
-  
-  private
   def require_login
-    unless signed_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to root_url
-    end
+    deny_access unless signed_in?
   end
+  
+  def deny_access
+    store_location
+    redirect_to root_url, :notice => "gotta sign in or sign up brah"
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    clear_return_to
+  end
+  private
+    def store_location
+      session[:return_to] = request.fullpath
+    end
+
+    def clear_return_to
+      session[:return_to] = nil
+    end
   
   def get_search_object
     @q = Post.search(params[:q])

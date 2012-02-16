@@ -22,3 +22,7 @@
 every 2.hours do
   runner "User.weekly_update", :environment => "development", :output => 'log/cron.log'
 end
+
+ever 2.weeks do
+  runner "Post.deactivate_old", :environment => "development", :output => 'log/cron.log'
+end

@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   end
   
   def update
+    @header = "Edit"
     if @user.update_attributes(params[:user])
       if params[:stripe_customer_token]
         @user.update_stripe
@@ -57,12 +58,13 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
+    @header = "Sign up"
     
     #integrate with 'clearance' gem
     if @user.save
       UserMailer.welcome_mail(@user).deliver
       sign_in @user
-      redirect_to @user, :success => "Welcome to groupie"
+      redirect_back_or @user
     else
       #@title = "Sign up"
       render 'new'

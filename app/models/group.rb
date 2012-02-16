@@ -3,19 +3,11 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :members,    :through => :memberships, :source => :member, :foreign_key => :member_id
   belongs_to :owner,    :class_name => "User", :foreign_key => :user_id
-  attr_accessor :the_password
   has_many :assignments
   has_many :posts,      :through => :assignments
-  scope :public, where("private = ?", false)
-#   searchable do
-#     text :name, :description
-#   end
+  #scope :public, where("private = ?", false)
   
-  has_attached_file :photo, :styles => { :thumb => "100x100",
-                                         :small => "200x200" },
-                    :path => ":rails_root/assets/images/post_images/:id/:style/:basename.:extension",
-                    :default_url => "/assets/missing/:style.png"
-                    
+  accepts_nested_attributes_for :post_images
   
   def get_random
 #    assignments = assignments.limit(5)
@@ -25,6 +17,7 @@ class Group < ActiveRecord::Base
   end
   
   class << self
+    #the method that checks the password supplied by prospective members
     def check(code, group_id)
       group = find_by_id(group_id)
       group.group_password == code ? group : nil

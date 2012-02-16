@@ -6,7 +6,8 @@ class Post < ActiveRecord::Base
   belongs_to :product_category
   has_many :assignments, :dependent => :destroy
   has_many :groups, :through => :assignments
- 
+#   scope :published, lambda{ where("published_on >= ?", Time.now).where("deleted_on IS NULL or deleted_at < ?", Time.now)
+  
   accepts_nested_attributes_for :post_images#, :reject_if => lambda { |t| t[:post_image].nil?}, :allow_destroy => true
   accepts_nested_attributes_for :assignments, :allow_destroy => true
   accepts_nested_attributes_for :user
@@ -26,4 +27,8 @@ class Post < ActiveRecord::Base
   def get_assignment_post_id(assignments)
     return assignments.first(:order => "RANDOM()").post_id
   end
+  
+#   def self.deactivate_old
+#     self.where("updated_at >= ?", time_ago_in_words(2.weeks)).destroy
+#   end
 end

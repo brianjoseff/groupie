@@ -55,4 +55,6 @@ Groupie::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  
+  config.action_mailer.delivery_method = :ses
 end

@@ -1,13 +1,14 @@
 .content
   %div.show
-    %div.image
-      =link_to image_tag(@group.photo.url(:thumb), :alt => @group.name), group_url(@group)
-    %div.data
-    %h1= @group.name
-    %p= @group.description
-    -if current_user == @user
-      =link_to "Edit", edit_group_path(@group)
-    %br
+    %div.group_image
+      =link_to image_tag(@group.post_images.first.nil?  ? '/assets/group-thumb.png': @group.post_images.first.image.url(:medium), :alt => @group.name), group_url(@group)
+    %div.group_info
+      %h1= @group.name
+      %p= @group.description
+      -if current_user == @user
+        =link_to "Edit", edit_group_path(@group)
+    %br/
+    %div.clear
     %br/
     -if @group.group_password && @group.owner != current_user
       / =form_for @group do |f|
@@ -30,6 +31,8 @@
     %br
     %br/
     -if @group.owner == current_user
+      %h2 Invite people!
+      %h3 copy and paste blitz lists or random emails here
       = render :partial => 'invite', :locals => {:group => @group}
     %h2 items
     %table

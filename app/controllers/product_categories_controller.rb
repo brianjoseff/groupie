@@ -14,7 +14,9 @@ class ProductCategoriesController < ApplicationController
   # GET /product_categories/1.xml
   def show
     @product_category = ProductCategory.find(params[:id])
-    @posts = Post.where(:product_category_id => @product_category.id)
+#     @posts = Post.where(:product_category_id => @product_category.id).paginate(:page => params[:page])
+#     @posts = @product_category.posts.paginate(:page => params[:page])
+    @posts = Post.paginate(:page => params[:page], :per_page => 10, :conditions =>   ['product_category_id = ? ' , @product_category.id ])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @product_category }

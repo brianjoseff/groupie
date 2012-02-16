@@ -1,4 +1,8 @@
 .content
   %h1=@product_category.name
+  / = render :partial => 'posts/post', :collection => @posts
+  =will_paginate @posts
   =render @posts
+  =will_paginate @posts
+  
 =render :partial => 'shared/side_nav'

@@ -6,7 +6,7 @@
       /   =text_field_tag :q, params[:q], :id => 'searchfield'
       /   =submit_tag 'search',:name => nil, :id => 'searchbutton'
       =search_form_for @q, :url => { :controller => "search", :action => "index" }do |f|
-        =f.text_field :name_cont
+        =f.text_field :name_cont, :id => 'searchfield'
         =f.submit 'search', :id => 'searchbutton'
   %nav
     %ul		

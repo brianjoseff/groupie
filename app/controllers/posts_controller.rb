@@ -12,7 +12,8 @@ class PostsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find(params[:user_id])
-      @posts = @user.posts
+     
+      @posts = @user.posts.paginate(:page => params[:page], :per_page => 3)
     else
 #       @q = Post.search(params[:q])
 #       @posts = @q.result
@@ -108,7 +109,7 @@ class PostsController < ApplicationController
   # PUT /posts/1
   # PUT /posts/1.xml
   def update
-    params[:post][:group_ids] ||= []
+    # params[:post][:group_ids] ||= []
     @post = Post.find(params[:id])
 
     respond_to do |format|

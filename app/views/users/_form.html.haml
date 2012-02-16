@@ -1,35 +1,39 @@
--if 
-	%h1 Sign up
--else
-	%h1 Edit
+%h1 #{@header}
 =form_for(@user) do |f|
-	=render "shared/error_messages", :target => @user
-	=f.hidden_field :stripe_customer_token
-	%dl
-		-if signed_in?
-			%dt.field=f.label :avatar
-			%dd.field=f.file_field :avatar
-		%dt.field=f.label :name
-		%dd.field=f.text_field :name
-		%dt.field=f.label :email
-		%dd.field=f.text_field :email
-		-if @user.new_record?
-			%dt.field=f.label :password
-			%dd.field=f.password_field :password
-		-if @user.stripe_customer_token.present?
-			%p Credit card has been provided.
-		-else
-			%div.field
-				=label_tag :card_number, "Credit Card Number"
-				=text_field_tag :card_number, nil, :name =>	nil
-			%div.field
-				=label_tag :card_code, "Security Code on Card (CVV)"
-				=text_field_tag :card_code, nil, :name 	=> nil
-			%div.field
-				=label_tag :card_month, "Card Expiration"
-				=select_month nil, {:add_month_numbers => true}, {:name => nil, :id => "card_month"}
-				=select_year nil, {:start_year => Date.today.year, :end_year => Date.today.year+15}, {:name => nil, :id => "card_year"}
-			%div#stripe_error
-				%noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
-	.actions
-		=f.submit((defined?(editing) ? "Update" : "Sign Up"))
+  =render "shared/error_messages", :target => @user
+  =f.hidden_field :stripe_customer_token
+  %p.fancy-label
+    -if signed_in?
+      =f.label :avatar
+      =f.file_field :avatar
+  %p.fancy-label
+    %span	
+      =f.label :name
+      =f.text_field :name
+  %p.fancy-label
+    %span
+      =f.label :email
+      =f.text_field :email
+  %p.fancy-label
+    %span
+      -if @user.new_record?
+        =f.label :password
+        =f.password_field :password
+  -if @user.stripe_customer_token.present?
+    %p Credit card has been provided.
+  -else
+    %p.fancy-label
+      %span
+        =label_tag :card_number, "Credit Card Number"
+        =text_field_tag :card_number, nil, :name =>	nil
+    %p.fancy-label
+      %span
+        =label_tag :card_code, "Security Code on Card (CVV)"
+        =text_field_tag :card_code, nil, :name 	=> nil
+    =label_tag :card_month, "Card Expiration"
+    =select_month nil, {:add_month_numbers => true}, {:name => nil, :id => "card_month"}
+    =select_year nil, {:start_year => Date.today.year, :end_year => Date.today.year+15}, {:name => nil, :id => "card_year"}
+    %div#stripe_error
+    %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+  .actions
+    =f.submit((defined?(editing) ? "Update" : "Sign Up"))

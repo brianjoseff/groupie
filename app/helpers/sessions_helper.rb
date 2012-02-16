@@ -1,11 +1,11 @@
 module SessionsHelper
+  def require_login
+    deny_access unless signed_in?
+  end
+  
   def deny_access
     store_location
-    if signed_in?
-      redirect_to current_user, :notice => "sorry, can't go there."
-    else
-      redirect_to root, :notice => "gotta sign in brah"
-    end
+    redirect_to root, :notice => "gotta sign in or sign up brah"
   end
 
   def redirect_back_or(default)
