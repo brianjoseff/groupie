@@ -9,12 +9,12 @@
 		%br/
 	-else
 		%h2 #{@user.name} groups
-	%table
-		=render @user.groups_as_owner
-	-if current_user == @user
-		%h2 you are a member of:
-	-else
-		%h2 #{@user.name} is a member of:
+	/ %table
+	/		=render @user.groups_as_owner
+	/ -if current_user == @user
+	/		%h2 you are a member of:
+	/ -else
+	/		%h2 #{@user.name} is a member of:
 	%table	
 		=render @groups_member
 	=render :partial => "form_after_signup"
