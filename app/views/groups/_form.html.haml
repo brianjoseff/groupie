@@ -7,28 +7,29 @@
     %span
       =f.label :name
       =f.text_field :name
-  %p.fancy-label
-    %span
-      =f.fields_for :post_images do |ff|
-        =ff.file_field :image
-  =f.label :private, "Private group?"
-  #private_group=f.check_box :private
+  =f.fields_for :post_images do |ff|
+    =ff.label :image
+    =ff.file_field :image
+  
+  #private-group
+    =f.check_box :private
+    =f.label :private, "Private group?"
   %br/
   
-  %div#private_fields
-    %p Set an entrance code that users can submit to join this group
+  %span#private-fields{:style => "display:none"}
+
+    %p Entrance quetsion. If users answer correctly they will be able to join this group.
     %p.fancy-label
       %span
-        =f.label :group_password, "entrance code"
-        =f.text_field :group_password
-    %p Optional: Create a question to be displayed on the group page. If users answer correctly they will be able to join this group.
-    %p.fancy-label
-      %span
-        =f.label :question, "question"
+        =f.label :question, "Question"
         =f.text_field :question
-	
+    %p The answer for the question, or just an entrance code that users can submit to join this group and leave the question blank.
+    %p.fancy-label
+      %span
+        =f.label :group_password, "Answer/Entrance code"
+        =f.text_field :group_password  
   %p.area
     %span.area
       =f.label :description
-      =f.text_area :description, :size => "20x10"
+      =f.text_area :description, :size => "40x8"
   .action=f.submit "Create"

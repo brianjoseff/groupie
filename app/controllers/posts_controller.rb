@@ -68,6 +68,7 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
    #  @post = @user.posts.build
     @post = Post.new
+    @categories = ProductCategory.all
 
 #     @assigment = Assignment.new
     #allow up to 5 images to be uploaded
@@ -91,6 +92,7 @@ class PostsController < ApplicationController
   def create
     @user = current_user
     @post = @user.posts.build(params[:post])
+    @categories = ProductCategory.all
     
     if @post.save
       @groups = @post.groups

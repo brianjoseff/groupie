@@ -21,15 +21,35 @@ function add_fields(link, association, content) {
 //     };
 //   });
 // }
-function toggleBox2() {
-  jQuery("#private_group").click(function() { 
-  if (jQuery(this).attr('checked') == "checked") {
-    jQuery("#private_fields").show("fast");
-    }else{
-      jQuery("#private_fields").hide("fast");
-    };
-  });
-}
+// function toggleBox2() {
+//   jQuery("#private-group").click(function() { 
+//   if (jQuery(this).attr('checked') == "checked") {
+//     jQuery("#private-fields").show("fast");
+//     }else{
+//       jQuery("#private-fields").hide("fast");
+//     };
+//   });
+// }
+$(document).ready(function(){
+	$("#private-group").change(function(){      
+	    $("#private-fields").toggle(this.checked);
+	});
+});
+// $(document).ready(function(){
+//   // do your checks of the radio buttons here and show/hide what you want to
+//   // $("#Jobs_Internships_3").hide();
+//   // if ($("#Jobs_Internships_3:checked").length > 0){ $("#price").hide(); };
+// 
+//   // add functionality for the onclicks here
+//   $("#Jobs_Internships_3:checked").click(function() {
+//     $("#price").hide();
+//   });
+//   // 
+//   // $("#answerNo").click(function() {
+//   //   $("#subQuestion").hide();
+//   // });
+// });
+
 $(document).ready(function(){
  
 	// Find each of our input fields
@@ -73,7 +93,43 @@ $(document).ready(function(){
 //     $('#credit_fields').toggle();
 //   });
 // });
-
+// $(document).ready(function KeepCount() {
+// 
+// 	var checkCount=0
+// 
+// 	//maximum number of allowed checked boxes
+// 	var maxChecks=3
+// 
+// 	function setChecks(obj){
+// 	//increment/decrement checkCount
+// 	if(obj.checked){
+// 	checkCount=checkCount+1
+// 	}else{
+// 	checkCount=checkCount-1
+// 	}
+// 	//if they checked a 4th box, uncheck the box, then decrement checkcount and pop alert
+// 	if (checkCount>maxChecks){
+// 	obj.checked=false
+// 	checkCount=checkCount-1
+// 	alert('you may only choose up to '+maxChecks+' options')
+// 	}
+// 
+// });
+$(document).ready(function(){
+	$("input:checkbox[name=post[assignments_attributes]]").click(function() {
+		var bol = $("input:checkbox[name=post[assignments_attributes]]:checked").length >= 3;
+		var boxes = $("input:checkbox[name=post[assignments_attributes]]").not(":checked").attr("disabled",bol);
+	});
+});
+$(document).ready(function(){
+	$("#post_product_id_3").click(function(){
+		if ($('input[id=post_product_id_3]:checked').val()=="3"){
+			$('.price-field').hide();
+		}else{
+			$('.price-field').show();
+		};
+	});
+});
 $(document).ready(function() {
 	jQuery('body').addClass('jsenabled');
 	toggleBox();

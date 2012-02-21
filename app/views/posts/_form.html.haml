@@ -1,34 +1,49 @@
-=form_for( (defined?(editing) ? @post : setup_post(@post,current_user)), :html => { :multipart => true}) do |f|
-	=f.label :product_category
-	=f.collection_select( :product_category_id, ProductCategory.all, :id, :name)
+=form_for( (defined?(editing) ? @post : setup_post(@post,current_user)), :html => { :multipart => true}, :remote => true) do |f|
+	=render "shared/error_messages", :target => @post
+	=f.label :product_category, "Choose a category for your post:"
+	/=f.collection_select( :product_category_id, ProductCategory.all, :id, :name)
+	.checkbox-area
+		-@categories.each do |c|
+			.checkbox-stuff
+				=f.radio_button :product_category_id, c.id
+				=c.name.humanize
 	%br/
+	%div.form-row
+		%p.fancy-label
+			%span
+				=f.label :name, "Post Title"
+				=f.text_field :name
+		/ =f.label :borrow, "borrow?"
+		/ =f.check_box :borrow
+		%p.fancy-label
+			$
+			%span.price-field
+				=f.label :price, "Price"
+				=f.text_field :price, :size => "5"
+				
+	/ #premium_group
+	/		=f.label :premium_mult_group_viz
+	/		=f.check_box :premium_mult_group_viz
+	.clear		
+	%p.area
+		%span.area
+			=f.label :description
+			=f.text_area :description, :size => "50x10"
+	=f.fields_for :user do |u|
+		=render "user_fields", :f => u
 	=f.fields_for :post_images do |ff|
 		=ff.label :image
 		=ff.file_field :image
 	/link below requires "nested_form_for"
 	/=f.link_to_add "Add an image", :post_images
-	%p.fancy-label
-		%span
-			=f.label :name
-			=f.text_field :name
-	=f.label :borrow, "borrow?"
-	=f.check_box :borrow
-	%p.fancy-label
-		%span
-			=f.label :price
-			=f.text_field :price
-	=f.label :premium_mult_group_viz
-	%div#premium_group=f.check_box :premium_mult_group_viz		
-	%p.area
-		%span.area
-			=f.label :description
-			=f.text_area :description, :size => "20x10"
-	=f.fields_for :user do |u|
-		=render "user_fields", :f => u
-	=f.fields_for :assignments do |ff|
-		=ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0','1'
-		=ff.label :_destroy, ff.object.group.name
-		=ff.hidden_field :group_id
+
+	%p Choose which groups you want your post to be visible to:
+	.checkbox-area
+		=f.fields_for :assignments do |ff|
+			.checkbox-stuff
+				=ff.check_box :_destroy, {:checked => ff.object.persisted?}, '0','1'
+				=ff.label :_destroy, ff.object.group.name
+				=ff.hidden_field :group_id
 	.action=f.submit "Save Post"
 	
 

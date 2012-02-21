@@ -1,4 +1,6 @@
 class Group < ActiveRecord::Base
+  validates_presence_of :name
+  
   has_many :post_images, :as => :imageable, :dependent => :destroy
   has_many :memberships
   has_many :members,    :through => :memberships, :source => :member, :foreign_key => :member_id

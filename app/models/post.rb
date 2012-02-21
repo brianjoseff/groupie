@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
 #   attr_accessible :name, :borrow, :price, :description, :user_id, :product_category_id, :post_image_ids, :group_ids, :post_images_attributes, :post_image
+#   validates_presence_of :_destroy
+  validates_presence_of :name, :description
+  
   has_many :post_images, :as => :imageable, :dependent => :destroy
   has_many :emails
   belongs_to :user
