@@ -1,35 +1,42 @@
 %h1 Create a group
 =form_for(@group, :html => { :multipart => true}) do |f|
-  /=render "shared/error_messages", :target => @user
-  =hidden_field_tag('user_id', current_user.id)
-  =hidden_field_tag('group[member_ids][]', current_user.id)
-  %p.fancy-label
-    %span
-      =f.label :name
-      =f.text_field :name
-  =f.fields_for :post_images do |ff|
-    =ff.label :image
-    =ff.file_field :image
-  
-  #private-group
-    =f.check_box :private
-    =f.label :private, "Private group?"
-  %br/
-  
-  %span#private-fields{:style => "display:none"}
+	/=render "shared/error_messages", :target => @user
+	=hidden_field_tag('user_id', current_user.id)
+	=hidden_field_tag('group[member_ids][]', current_user.id)
+	=f.label :group_category, "Choose a category for this group:"
+	/=f.collection_select( :group_category_id, ProductCategory.all, :id, :name)
+	.checkbox-area
+		-@categories.each do |g|
+			.checkbox-stuff
+				=f.radio_button :group_category_id, g.id
+				=g.name.humanize
+	%p.fancy-label
+		%span
+			=f.label :name
+			=f.text_field :name
+	=f.fields_for :post_images do |ff|
+		=ff.label :image
+		=ff.file_field :image
+	
+	#private-group
+		=f.check_box :private
+		=f.label :private, "Private group?"
+	%br/
+	
+	%span#private-fields{:style => "display:none"}
 
-    %p Entrance quetsion. If users answer correctly they will be able to join this group.
-    %p.fancy-label
-      %span
-        =f.label :question, "Question"
-        =f.text_field :question
-    %p The answer for the question, or just an entrance code that users can submit to join this group and leave the question blank.
-    %p.fancy-label
-      %span
-        =f.label :group_password, "Answer/Entrance code"
-        =f.text_field :group_password  
-  %p.area
-    %span.area
-      =f.label :description
-      =f.text_area :description, :size => "40x8"
-  .action=f.submit "Create"
+		%p Entrance quetsion. If users answer correctly they will be able to join this group.
+		%p.fancy-label
+			%span
+				=f.label :question, "Question"
+				=f.text_field :question
+		%p The answer for the question, or just an entrance code that users can submit to join this group and leave the question blank.
+		%p.fancy-label
+			%span
+				=f.label :group_password, "Answer/Entrance code"
+				=f.text_field :group_password	 
+	%p.area
+		%span.area
+			=f.label :description
+			=f.text_area :description, :size => "40x8"
+	.action=f.submit "Create"

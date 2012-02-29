@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => :create
-  before_filter :get_user, :except => [ :create, :new]
+  before_filter :get_user, :except => [ :create, :new, :check_email]
   before_filter :authorize, :except => [:create, :new, :show]
   
   
@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
   
   def edit
+    @header = "Edit"
     unless current_user == @user
       deny_access(flash_message= "sorry, you can only edit your own stuff")
     end
@@ -53,12 +54,14 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @header = "Sign up"
     render :template => 'shared/signup'
   end
   
   def create
-    @user = User.new(params[:user])
     @header = "Sign up"
+    @user = User.new(params[:user])
+    
     
     #integrate with 'clearance' gem
     if @user.save
@@ -74,6 +77,12 @@ class UsersController < ApplicationController
       @user.errors.add :base, "There was a problem with your credit card"
       @user.stripe_token = nil
       render :action => :new
+  end
+  def check_email
+    @user = User.find_by_email(params[:user][:email])
+    respond_to do |format|
+      format.json { render :json => !@user}
+    end
   end
   
   private

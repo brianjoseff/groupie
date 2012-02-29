@@ -4,7 +4,7 @@ namespace :db do
     require 'faker'
     require 'forgery'
     
-    [User, Group, Membership, Assignment, Post, ProductCategory].each(&:delete_all)
+    [User, Group, Membership, Assignment, Post, ProductCategory, GroupCategory].each(&:delete_all)
     User.create!(:name => "Brian",
                  :email => "b@b.edu",
                  :password => "000000")
@@ -27,9 +27,11 @@ namespace :db do
       name = Forgery(:LoremIpsum).word(:random => true) + " group"
       description = Forgery(:LoremIpsum).paragraph(:random => true)
       user_id = Forgery(:Basic).number(:at_least => 1, :at_most => 15)
+      group_category_id = Forgery(:Basic).number(:at_least=> 1, :at_most => 5)
       Group.create!(:name => name,
                     :description => description,
-                    :user_id => user_id)
+                    :user_id => user_id,
+                    :group_category_id => group_category_id)
     end
     
     #product_categories
@@ -38,6 +40,13 @@ namespace :db do
     ProductCategory.create!(:name => "Jobs/Internships")
     ProductCategory.create!(:name => "Free Stuff")
     ProductCategory.create!(:name => "Housing")
+    
+    #group_categories
+    GroupCategory.create!(:name => "Interest")
+    GroupCategory.create!(:name => "School")
+    GroupCategory.create!(:name => "Business")
+    GroupCategory.create!(:name => "Organization")
+    GroupCategory.create!(:name => "Region")
     
     #posts
     40.times do |x|

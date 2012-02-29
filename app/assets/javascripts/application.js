@@ -2,8 +2,10 @@
 // This file is automatically included by javascript_include_tag :defaults
 //= require jquery
 //= require jquery_ujs
+//= require rails.validations
 //= require_self
 //= require_tree .
+
 
 function add_fields(link, association, content) {
   var new_id = new Date().getTime();
@@ -12,6 +14,12 @@ function add_fields(link, association, content) {
     before: content.replace(regexp, new_id)
   });
 }
+$(document).ready(function(){
+	
+	$("#private-group").change(function(){      
+	    $("#private-fields").toggle(this.checked);
+	});
+});
 // function toggleBox() {
 //   jQuery("#premium_group .input:checkbox").click(function() { 
 //   if (jQuery(this).attr('checked') == "checked") {
@@ -59,6 +67,9 @@ $(document).ready(function(){
 	// (which is the previous element in the DOM).
 	$fields.focus(function(){
 		$(this).prev().hide();
+		if $(this).prev().hasClass('field_with_errors'){
+			$(this).prev('field_with_errors').hide();
+		}
 	});
 
  
@@ -67,6 +78,9 @@ $(document).ready(function(){
 	$fields.blur(function(){
 		if (!this.value) {
 			$(this).prev().show();
+			if $(this).prev().hasClass('field_with_errors'){
+				$(this).prev('field_with_errors').show();
+			}
 		}
 	});
 
@@ -115,6 +129,68 @@ $(document).ready(function(){
 // 	}
 // 
 // });
+$(document).ready(function () {
+	$("#new_post").validate({
+		debug: true,
+		rules: {
+			"post[name]": {required: true, name: true},
+			"post[description]": {required: true, minlength: 6},
+			"post[assignments_attributes]": {required: true}
+		}
+	});
+});
+// $(document).ready(function() { 
+//     // validate signup form on keyup and submit 
+// 
+//     var validator = $("#new_user").validate({ 
+//         rules: { 
+// 			"user[name]": "required",
+// 			// "user[email]": "required",
+// 			"user[password]": {required: true, minlength: 6}
+//         }, 
+//         messages: { 
+//             "user[name]": "Enter your name", 
+//  
+//             "user[password]": { 
+//                 required: "Provide a password", 
+//                 rangelength: jQuery.format("Enter at least {0} characters") 
+//             }// , 
+//             //             email: { 
+//             //                 required: "Please enter a valid email address", 
+//             //                 minlength: "Please enter a valid email address", 
+//             //                 remote: jQuery.format("{0} is already in use") 
+//             //             } 
+//         }, 
+//         // the errorPlacement has to take the table layout into account 
+//         // errorPlacement: function(error, element) { 
+//         //     if ( element.is(":radio") ) 
+//         //         error.appendTo( element.parent().next().next() ); 
+//         //     else if ( element.is(":checkbox") ) 
+//         //         error.appendTo ( element.next() ); 
+//         //     else 
+//         //         error.appendTo( element.parent().next() ); 
+//         // }, 
+//         // specifying a submitHandler prevents the default submit, good for the demo 
+//         submitHandler: function() { 
+//             alert("submitted!"); 
+//         }, 
+//         // set this class to error-labels to indicate valid fields 
+//         success: function(label) { 
+//             // set   as text for IE 
+//             label.html(" ").addClass("checked"); 
+//         } 
+//     }); 
+//      
+//     // propose username by combining first- and lastname 
+//     $("#username").focus(function() { 
+//         var firstname = $("#firstname").val(); 
+//         var lastname = $("#lastname").val(); 
+//         if(firstname && lastname && !this.value) { 
+//             this.value = firstname + "." + lastname; 
+//         } 
+//     }); 
+//  
+// });
 $(document).ready(function(){
 	$("input:checkbox[name=post[assignments_attributes]]").click(function() {
 		var bol = $("input:checkbox[name=post[assignments_attributes]]:checked").length >= 3;
@@ -122,11 +198,17 @@ $(document).ready(function(){
 	});
 });
 $(document).ready(function(){
-	$("#post_product_id_3").click(function(){
-		if ($('input[id=post_product_id_3]:checked').val()=="3"){
-			$('.price-field').hide();
+	if ($("input[value=3]").is(":checked")){
+		$(".price-field").hide();
+		$("#credit-fields").show();
+	}
+	$("input").click(function(){
+		if ($("input[value=3]").is(":checked")){
+			$(".price-field").hide();
+			$("#credit-fields").show();
 		}else{
-			$('.price-field').show();
+			$(".price-field").show();
+			$("#credit-fields").hide();
 		};
 	});
 });

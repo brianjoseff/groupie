@@ -5,6 +5,7 @@
     %div.group_info
       %h1= @group.name
       %p= @group.description
+      %p= @group.group_category.name
       -if current_user == @user
         =link_to "Edit", edit_group_path(@group)
     %br/
@@ -34,10 +35,13 @@
       %h2 Invite people!
       %h3 copy and paste blitz lists or random emails here
       = render :partial => 'invite', :locals => {:group => @group}
-    %h2 items
-    %table
-      =render @group.posts
-    %h2 members
-    %table
-      =render @group.members
+    -unless @group.private? && @group.members.include?(current_user) == false
+      %h2 Posts
+      %table
+        =will_paginate @posts
+        =render @posts
+        =will_paginate @posts
+      %h2 members
+      %table
+        =render @group.members
 =render :partial => 'shared/side_nav'

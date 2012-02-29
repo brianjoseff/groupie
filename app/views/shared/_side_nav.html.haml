@@ -11,6 +11,13 @@
 		%ul.categories
 			-@categories.each do |category|
 				%li= link_to "#{category.name}", product_category_path(category)
+	/PUT ADVERTISEMENTS HERE!!!!!!!
+	.category-container
+		%div.category-title
+			%p Group Categories
+		%ul.categories
+			-@other_categories.each do |group_category|
+				%li= link_to "#{group_category.name}", group_category_path(group_category)
 	-if current_page?(root_url)
 		%div.show
 			%div.image

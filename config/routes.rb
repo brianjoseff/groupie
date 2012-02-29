@@ -1,5 +1,7 @@
 Groupie::Application.routes.draw do
 
+  resources :group_categories
+
   resources :emails
   
   get "memberships/index"
@@ -28,6 +30,7 @@ Groupie::Application.routes.draw do
   resources :search, :only => [:index]
   resources :messages, :only => [:new]
   
+  match "users/check_email", :to => 'users#check_email'
   match '/private', :to => 'groups#private'
   match '/search', :to => 'search#index'
   match '/invites', :to => 'invites#new'

@@ -1,0 +1,8 @@
+.content
+  %h1=@group_category.name
+  / = render :partial => 'posts/post', :collection => @posts
+  / =will_paginate @groups
+  =render @groups
+  / =will_paginate @groups
+  
+=render :partial => 'shared/side_nav'

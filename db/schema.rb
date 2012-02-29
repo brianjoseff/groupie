@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215160705) do
+ActiveRecord::Schema.define(:version => 20120222183305) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "group_id"
@@ -32,6 +33,12 @@ ActiveRecord::Schema.define(:version => 20120215160705) do
     t.integer  "post_id"
   end
 
+  create_table "group_categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.boolean  "private"
@@ -45,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20120215160705) do
     t.integer  "user_id"
     t.string   "group_password"
     t.string   "question"
+    t.integer  "group_category_id"
   end
 
   create_table "memberships", :force => true do |t|

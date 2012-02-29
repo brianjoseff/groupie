@@ -1,11 +1,36 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                    :integer         not null, primary key
+#  email                 :string(255)
+#  encrypted_password    :string(128)
+#  salt                  :string(128)
+#  confirmation_token    :string(128)
+#  remember_token        :string(128)
+#  created_at            :datetime
+#  updated_at            :datetime
+#  name                  :string(255)
+#  zip                   :integer
+#  school                :string(255)
+#  avatar_file_name      :string(255)
+#  avatar_content_type   :string(255)
+#  avatar_file_size      :integer
+#  avatar_updated_at     :datetime
+#  admin                 :boolean         default(FALSE)
+#  last_4_digits         :string(255)
+#  stripe_id             :string(255)
+#  subscribed            :boolean
+#  stripe_customer_token :string(255)
+#
+
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :last_4_digits
     
   include Clearance::User
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+(edu)+\z/i
   
-  validates :name,     :presence     => true,                       
-                       :length       => { :maximum => 50 }          
+  validates_presence_of :name, :email, :password         
                        
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "50x50>" },
                              :default_url => "/system/avatars/missing/:style.png",

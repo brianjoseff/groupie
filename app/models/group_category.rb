@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: product_categories
+# Table name: group_categories
 #
 #  id         :integer         not null, primary key
 #  name       :string(255)
@@ -8,8 +8,7 @@
 #  updated_at :datetime
 #
 
-class ProductCategory < ActiveRecord::Base
-  has_many :subcategories, :foreign_key => "parent_id"
-  has_many :posts
+class GroupCategory < ActiveRecord::Base
+  has_many :groups
   
 end

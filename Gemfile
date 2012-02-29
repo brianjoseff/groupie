@@ -8,6 +8,7 @@ gem 'rails', '3.1.0'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 end
 group :production do
   gem 'pg'
@@ -32,6 +33,7 @@ gem 'heroku'
 gem 'whenever', :require => false
 gem 'will_paginate'
 gem 'aws-ses', :require => 'aws/ses'
+gem 'client_side_validations'
 
 # Use unicorn as the web server
 # gem 'unicorn'

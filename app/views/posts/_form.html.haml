@@ -16,10 +16,11 @@
 		/ =f.label :borrow, "borrow?"
 		/ =f.check_box :borrow
 		%p.fancy-label
-			$
-			%span.price-field
-				=f.label :price, "Price"
-				=f.text_field :price, :size => "5"
+			%div.price-field
+				$
+				%span.fancy-label
+					=f.label :price, "Price"
+					=f.text_field :price, :size => "5"
 				
 	/ #premium_group
 	/		=f.label :premium_mult_group_viz
@@ -36,7 +37,23 @@
 		=ff.file_field :image
 	/link below requires "nested_form_for"
 	/=f.link_to_add "Add an image", :post_images
+	#credit-fields{:style => "display:none"}
+		=f.hidden_field :stripe_customer_token
+		%p.fancy-label
+			%span
+				=label_tag :card_number, "Credit Card Number"
+				=text_field_tag :card_number, nil,:name => nil
+		%p.fancy-label
+			%span
+				=label_tag :card_code, "Sec. Code"
+				=text_field_tag :card_code, nil, :name => nil, :size => "5"
 
+		=label_tag :card_month, "Card Expiration"
+		=select_month nil, {:add_month_numbers => true}, {:name => nil, :id => "card_month"}
+		=select_year nil, {:start_year => Date.today.year, :end_year => Date.today.year+15}, {:name => nil, :id => "card_year"}
+		#stripe_error
+		%noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+			
 	%p Choose which groups you want your post to be visible to:
 	.checkbox-area
 		=f.fields_for :assignments do |ff|

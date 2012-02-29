@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   skip_before_filter :require_login
   
   def index
+    @header = "Sign up"
     if signed_in?
       @user = current_user
     else
@@ -10,6 +11,7 @@ class HomeController < ApplicationController
   end
   
   def home
+    
     if !current_user
       @user = User.new
     else

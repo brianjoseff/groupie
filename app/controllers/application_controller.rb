@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   
   def get_categories
     @categories = ProductCategory.all
+    @other_categories = GroupCategory.all
   end
   
   def get_product_categories
