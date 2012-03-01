@@ -30,7 +30,8 @@ class User < ActiveRecord::Base
   include Clearance::User
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+(edu)+\z/i
   
-  validates_presence_of :name, :email, :password         
+  validates_presence_of :name, :email, :password
+  validates :password, :length => { :within => 6..40 }         
                        
   has_attached_file :avatar, :styles => { :medium => "200x200>", :thumb => "50x50>" },
                              :default_url => "/system/avatars/missing/:style.png",

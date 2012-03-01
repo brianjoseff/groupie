@@ -58,33 +58,36 @@ $(document).ready(function(){
 //   // });
 // });
 
+//This is the in-field label disappear magic
+//
 $(document).ready(function(){
  
 	// Find each of our input fields
 	var $fields = $('textarea, input:text, input:password');
-
+	
 	// If a field gets focus then hide the label
 	// (which is the previous element in the DOM).
 	$fields.focus(function(){
-		$(this).prev().hide();
-		if $(this).prev().hasClass('field_with_errors'){
-			$(this).prev('field_with_errors').hide();
-		}
+		$(this).prev('label[for*="lbl"]').hide();
 	});
-
- 
+	
+	 
 	// If a field loses focus and nothing has
 	// been entered in the field then show the label.
 	$fields.blur(function(){
-		if (!this.value) {
-			$(this).prev().show();
-			if $(this).prev().hasClass('field_with_errors'){
-				$(this).prev('field_with_errors').show();
-			}
+		if ($(this).val()=='') {
+			$('label[for*="lbl"]').show();
+			// if ($(this).prev().hasClass('field_with_errors'){
+			// 	$(this).prev().find('label').show();
+			// }
 		}
+		else{
+			$('label[for*="lbl"]').hide();
+		}
+	
 	});
-
- 
+	
+	 
 	// If the form is pre-populated with some values
 	// then immediately hide the corresponding labels. 
 	$fields.each(function(){
@@ -92,7 +95,17 @@ $(document).ready(function(){
 			$(this).prev().hide();
 		}
 	});
- 
+	//  	$("input").focus(function(){
+	// 	$(this).prev().hide()
+	// });
+	// $("input").blur(function(){
+	// 	if ($(this).val()=='') {
+	// 		$("label").show();
+	// 		// if ($(this).prev().hasClass('field_with_errors'){
+	// 		// 	$(this).prev().find('label').show();
+	// 		// }
+	// 	}
+	// });
 });
 
 // function passCheck(password){
